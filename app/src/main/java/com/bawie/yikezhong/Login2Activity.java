@@ -2,16 +2,24 @@ package com.bawie.yikezhong;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.bawie.yikezhong.base.BaseActivity;
+import com.bawie.yikezhong.base.BasePresenter;
+import com.bawie.yikezhong.presenter.UserLoginPresenter;
+import com.bawie.yikezhong.view.LoginView;
 import com.bumptech.glide.Glide;
 
-public class Login2Activity extends FragmentActivity implements View.OnClickListener {
+import java.util.ArrayList;
+import java.util.List;
+
+public class Login2Activity extends BaseActivity implements LoginView,View.OnClickListener {
 
     private ImageView login2_iv_black;
     private TextView login2_tv_zhuce;
@@ -23,6 +31,15 @@ public class Login2Activity extends FragmentActivity implements View.OnClickList
    /* private FragmentManager manager;
     private FragmentTransaction transaction;*/
     private ImageView login2_iv_top;
+
+    private UserLoginPresenter userLoginPresenter;
+
+    @Override
+    public List<BasePresenter> initPresenter() {
+        List<BasePresenter> list = new ArrayList<>();
+        list.add(userLoginPresenter);
+        return list;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,8 +67,9 @@ public class Login2Activity extends FragmentActivity implements View.OnClickList
 
         Glide.with(this).load(R.drawable.raw_1500977101)
                 .bitmapTransform(new GlideCircleTransform(this,10))
-                .crossFade(1000).into(login2_iv_top);
+                .into(login2_iv_top);
 
+        userLoginPresenter = new UserLoginPresenter(this);
 
         //点击事件
         login2_iv_black.setOnClickListener(this);
@@ -84,13 +102,20 @@ public class Login2Activity extends FragmentActivity implements View.OnClickList
 
             case R.id.login2_btn_login:
                 //登录按钮
-
+                String pass = login2_et_phone.getText().toString();
+                String user = login2_et_pwd.getText().toString();
+                if(TextUtils.isEmpty(user)||TextUtils.isEmpty(pass)){
+                    Toast.makeText(this, "密码或者用户名为空", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                userLoginPresenter.getUserLoginData(login2_et_phone.getText().toString(), login2_et_pwd.getText().toString(), null);
 
                 break;
 
             case R.id.login2_tv_pwd:
-                //忘记密码
-
+                //忘记密码,点击跳转到短信验证的页面
+               Intent intent3 = new Intent(Login2Activity.this,MobileActivity.class);
+                startActivity(intent3);
 
                 break;
 
@@ -106,5 +131,33 @@ public class Login2Activity extends FragmentActivity implements View.OnClickList
 
         }
 
+    }
+
+
+    @Override
+    public void success() {
+
+    }
+
+    @Override
+    public void failure() {
+
+    }
+
+    @Override
+    public void userloginSuccess(String string) {
+        Toast.makeText(this, "成功！！！！！", Toast.LENGTH_SHORT).show();
+        //游客登录
+        Intent intent3 = new Intent(Login2Activity.this,MainActivity.class);
+        startActivity(intent3);
+        finish();
+        //第一个参数为启动时动画效果，第二个参数为退出时动画效果
+        overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+    }
+
+    @Override
+    public void userloginFailue(String string) {
+
+        Toast.makeText(this, "失败", Toast.LENGTH_SHORT).show();
     }
 }

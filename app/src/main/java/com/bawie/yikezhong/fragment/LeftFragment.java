@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.bawie.yikezhong.LoginActivity;
 import com.bawie.yikezhong.R;
+import com.bawie.yikezhong.SheZhiActivity;
 import com.bawie.yikezhong.adapter.MyListAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -157,8 +158,10 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
 
             case R.id.left_shezhi:
                 //设置
-
+                Intent intent1 = new Intent(getContext(), SheZhiActivity.class);
+                startActivity(intent1);
                 break;
+
         }
     }
 

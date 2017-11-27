@@ -4,13 +4,14 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bawie.yikezhong.base.BaseActivity;
+import com.bawie.yikezhong.base.BasePresenter;
 import com.bawie.yikezhong.fragment.Fragment1;
 import com.bawie.yikezhong.fragment.Fragment2;
 import com.bawie.yikezhong.fragment.Fragment3;
@@ -20,7 +21,9 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.kson.slidingmenu.SlidingMenu;
 
-public class MainActivity extends FragmentActivity implements View.OnClickListener {
+import java.util.List;
+
+public class MainActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView main_touxiang;
     private ImageView main_xie;
@@ -32,6 +35,11 @@ public class MainActivity extends FragmentActivity implements View.OnClickListen
     private ImageView main_shipin;
     private TextView main_tv_shipin;
     private SlidingMenu menu;
+
+    @Override
+    public List<BasePresenter> initPresenter() {
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

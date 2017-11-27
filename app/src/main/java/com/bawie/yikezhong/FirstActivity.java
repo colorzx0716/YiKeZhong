@@ -4,10 +4,19 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-public class FirstActivity extends AppCompatActivity {
+import com.bawie.yikezhong.base.BaseActivity;
+import com.bawie.yikezhong.base.BasePresenter;
+
+import java.util.List;
+
+public class FirstActivity extends BaseActivity {
+
+    @Override
+    public List<BasePresenter> initPresenter() {
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -17,10 +26,11 @@ public class FirstActivity extends AppCompatActivity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                
-                Intent intent = new Intent(FirstActivity.this,MainActivity.class);
+                //跳转到登录页面
+                Intent intent = new Intent(FirstActivity.this,LoginActivity.class);
                 startActivity(intent);
                 finish();
+
             }
         },3000);//3秒后跳转
 

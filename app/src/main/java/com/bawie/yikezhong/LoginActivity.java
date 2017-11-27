@@ -2,22 +2,30 @@ package com.bawie.yikezhong;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.bawie.yikezhong.base.BaseActivity;
+import com.bawie.yikezhong.base.BasePresenter;
 import com.bumptech.glide.Glide;
 
-public class LoginActivity extends FragmentActivity implements View.OnClickListener {
+import java.util.List;
+
+public class LoginActivity extends BaseActivity implements View.OnClickListener {
 
     private ImageView login_iv_back;
     private RelativeLayout login_weixin;
     private RelativeLayout login_qq;
     private TextView login_tv;
     private ImageView login_iv;
+
+    @Override
+    public List<BasePresenter> initPresenter() {
+        return null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,11 +51,22 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
                 .crossFade(1000).into(login_iv);
 
 
+            login_tv.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    //跳转到登录页面
+                    Intent intent = new Intent(LoginActivity.this,Login2Activity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+                }
+            });
+
+
         //设置点击事件
         login_iv_back.setOnClickListener(this);
         login_weixin.setOnClickListener(this);
         login_qq.setOnClickListener(this);
-        login_tv.setOnClickListener(this);
     }
 
     @Override
@@ -69,13 +88,13 @@ public class LoginActivity extends FragmentActivity implements View.OnClickListe
 
                 break;
 
-            case R.id.login_tv:
+          /*  case R.id.login_tv:
                 //跳转到登录页面
                 Intent intent = new Intent(LoginActivity.this,Login2Activity.class);
                 startActivity(intent);
                //第一个参数为启动时动画效果，第二个参数为退出时动画效果
                 overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
-                break;
+                break;*/
         }
 
     }

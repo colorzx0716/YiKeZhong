@@ -23,7 +23,6 @@ public class ZhuceActivity extends FragmentActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zhuce);
 
-
         //返回键
         zhuce_iv_black = findViewById(R.id.zhuce_iv_black);
         //已有账号？
