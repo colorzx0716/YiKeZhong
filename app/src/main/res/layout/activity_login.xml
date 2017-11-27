@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/raw_1500974494"
+    tools:context="com.bawie.yikezhong.LoginActivity">
+
+    <ImageView
+        android:id="@+id/login_iv_back"
+        android:layout_width="@dimen/x50"
+        android:layout_height="@dimen/y50"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:padding="5dp"
+        android:src="@drawable/raw_1500885944" />
+    <ImageView
+        android:layout_width="@dimen/x160"
+        android:layout_height="@dimen/y160"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/raw_1500977101"
+        android:id="@+id/login_iv" />
+
+    <RelativeLayout
+        android:id="@+id/login_weixin"
+        android:layout_width="@dimen/x444"
+        android:layout_height="@dimen/y77"
+        android:layout_above="@+id/login_qq"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/but_weixin">
+
+
+        <ImageView
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/y60"
+            android:layout_alignEnd="@+id/textView"
+            android:layout_alignRight="@+id/textView"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="@dimen/x120"
+            android:src="@drawable/weiixin" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y90"
+            android:layout_marginLeft="@dimen/x190"
+            android:text="微信登录"
+            android:textColor="#FFF"
+            android:gravity="center"
+            android:id="@+id/textView" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:id="@+id/login_qq"
+        android:layout_width="@dimen/x444"
+        android:layout_height="@dimen/y77"
+        android:layout_alignLeft="@+id/login_weixin"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/login_weixin"
+        android:layout_marginBottom="@dimen/y185"
+        android:background="@drawable/but_qq">
+
+        <ImageView
+            android:layout_marginTop="@dimen/y10"
+            android:layout_marginLeft="@dimen/x126"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/y60"
+            android:src="@drawable/raw_1500022714"/>
+        <TextView
+            android:layout_width="@dimen/x130"
+            android:layout_height="@dimen/y90"
+            android:layout_marginLeft="@dimen/x190"
+            android:text="QQ登录"
+            android:textColor="#FFF"
+            android:gravity="center"/>
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/login_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/y90"
+        android:layout_alignEnd="@+id/login_iv"
+        android:layout_alignParentBottom="true"
+        android:layout_alignRight="@+id/login_iv"
+        android:layout_marginBottom="@dimen/y70"
+        android:gravity="center"
+        android:textColor="@color/colorziti"
+        android:text="其他登录方式" />
+
+
+</RelativeLayout>

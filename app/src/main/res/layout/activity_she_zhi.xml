@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bawie.yikezhong.SheZhiActivity">
+
+    <RelativeLayout
+        android:background="#33ccff"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120">
+
+        <ImageView
+            android:id="@+id/shezhi_back"
+            android:src="@mipmap/raw_1500023215"
+            android:scaleType="fitXY"
+            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/y60" />
+
+        <TextView
+            android:layout_toRightOf="@+id/shezhi_back"
+            android:textColor="#ffffff"
+            android:text="返回"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y120" />
+
+        <TextView
+            android:layout_centerInParent="true"
+            android:textColor="#ffffff"
+            android:text="设置"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+
+    </RelativeLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:background="@mipmap/layout_background"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y380">
+
+        <ImageView
+            android:id="@+id/left_touxiang"
+            android:src="@mipmap/touxiang"
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/x120"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150" />
+
+        <TextView
+            android:layout_toRightOf="@+id/left_touxiang"
+            android:textColor="#ffffff"
+            android:text="昵称"
+            android:layout_marginTop="@dimen/x240"
+            android:layout_marginLeft="@dimen/x60"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:src="@mipmap/sex"
+            android:scaleType="fitXY"
+            android:layout_marginTop="@dimen/x200"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_width="@dimen/x80"
+            android:layout_height="@dimen/y80" />
+
+        <TextView
+            android:layout_marginTop="@dimen/x30"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_below="@id/left_touxiang"
+            android:textColor="#ffffff"
+            android:text="编辑个性签名"
+            android:textSize="15sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    </RelativeLayout>
+
+    <ListView
+        android:id="@+id/left_lv"
+        android:divider="@null"
+        android:layout_marginTop="@dimen/y380"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y550"></ListView>
+
+    <LinearLayout
+        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/left_lv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:id="@+id/left_zuopin"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/raw_wodezuopin"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/y100" />
+
+            <TextView
+                android:text="我的作品"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/left_shezhi"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:src="@mipmap/raw_shezhi"
+                android:layout_width="@dimen/x100"
+                android:layout_height="@dimen/y100" />
+
+            <TextView
+                android:text="设置"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+
+    </LinearLayout>
+
+
+</RelativeLayout>

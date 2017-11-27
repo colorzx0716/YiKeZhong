@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bawie.yikezhong.MainActivity">
+
+    <RelativeLayout
+        android:background="#33ccff"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120">
+
+        <ImageView
+            android:id="@+id/main_touxiang"
+            android:src="@mipmap/touxiang"
+            android:scaleType="fitXY"
+            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/y100" />
+
+        <TextView
+            android:id="@+id/main_head_tv"
+            android:layout_centerInParent="true"
+            android:textColor="#ffffff"
+            android:text="随意更改"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+        <ImageView
+            android:id="@+id/main_xie"
+            android:src="@mipmap/xie"
+            android:scaleType="fitXY"
+            android:layout_centerInParent="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginRight="@dimen/x30"
+            android:layout_width="@dimen/x50"
+            android:layout_height="@dimen/y50" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/fg_layout"
+        android:layout_marginBottom="@dimen/y140"
+        android:layout_marginTop="@dimen/y120"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y140">
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y140">
+
+            <ImageView
+                android:id="@+id/main_tuijian"
+                android:layout_marginTop="@dimen/y10"
+                android:src="@mipmap/tuijian1"
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/y60" />
+
+            <TextView
+                android:id="@+id/main_tv_tuijian"
+                android:text="推荐"
+                android:layout_marginBottom="@dimen/x5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y140">
+
+            <ImageView
+                android:id="@+id/main_duanzi"
+                android:layout_marginTop="@dimen/y10"
+                android:src="@mipmap/duanzi1"
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/y60" />
+
+            <TextView
+                android:id="@+id/main_tv_duanzi"
+                android:text="段子"
+                android:layout_marginBottom="@dimen/x5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y140">
+
+            <ImageView
+                android:id="@+id/main_shipin"
+                android:layout_marginTop="@dimen/y10"
+                android:src="@mipmap/shipin1"
+                android:layout_width="@dimen/x60"
+                android:layout_height="@dimen/y60" />
+
+            <TextView
+                android:id="@+id/main_tv_shipin"
+                android:text="视频"
+                android:layout_marginBottom="@dimen/x5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</RelativeLayout>
