@@ -1,6 +1,7 @@
 package com.bawie.yikezhong;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
@@ -21,6 +22,7 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     private RelativeLayout login_qq;
     private TextView login_tv;
     private ImageView login_iv;
+    private SharedPreferences sp;
 
     @Override
     public List<BasePresenter> initPresenter() {
@@ -31,6 +33,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        sp = getSharedPreferences("sp", MODE_PRIVATE);
+
 
         //返回键
         login_iv_back = findViewById(R.id.login_iv_back);
@@ -50,17 +55,33 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
                 .bitmapTransform(new GlideCircleTransform(this,10))
                 .crossFade(1000).into(login_iv);
 
-
-            login_tv.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
+        login_tv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //跳转到登录页面
+                boolean isfirst = sp.getBoolean("isfirst", false);
+                if(isfirst){
+                    //第二次
                     //跳转到登录页面
+                    Intent intent = new Intent(LoginActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+                    overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
+                }else{
+
+                    //第一次
                     Intent intent = new Intent(LoginActivity.this,Login2Activity.class);
                     startActivity(intent);
                     finish();
                     overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
+
                 }
-            });
+            }
+        });
+
+
+
 
 
         //设置点击事件

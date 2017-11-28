@@ -1,5 +1,6 @@
 package com.bawie.yikezhong;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
@@ -16,6 +17,8 @@ public class SheZhiActivity extends AppCompatActivity implements View.OnClickLis
 
     private ImageView shezhi_back;
     private Button shezhi_login_clear;
+
+    private SharedPreferences sp;
 
 
     @Override
@@ -46,12 +49,12 @@ public class SheZhiActivity extends AppCompatActivity implements View.OnClickLis
                 break;
 
             case R.id.shezhi_login_clear:
-                /*//清除登录状态
+
                 //清除SharedPreferences
-                success = getSharedPreferences("success", MODE_PRIVATE);
-                SharedPreferences.Editor edit = success.edit();
+                sp = getSharedPreferences("sp", MODE_PRIVATE);
+                SharedPreferences.Editor edit = sp.edit();
                 edit.clear();
-                edit.commit();*/
+                edit.commit();
 
                 break;
         }

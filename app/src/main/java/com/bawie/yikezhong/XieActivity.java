@@ -1,11 +1,14 @@
 package com.bawie.yikezhong;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.bawie.yikezhong.activity.DuanZiActivity;
 
 public class XieActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -41,11 +44,15 @@ public class XieActivity extends AppCompatActivity implements View.OnClickListen
                 break;
 
             case R.id.xie_iv_img1:
-                Toast.makeText(this, "点击了图片1", Toast.LENGTH_SHORT).show();
+                //点击了段子发表
+                Intent intent = new Intent(XieActivity.this, DuanZiActivity.class);
+                startActivity(intent);
                 break;
 
             case R.id.xie_iv_img2:
-                Toast.makeText(this, "点击了图片2", Toast.LENGTH_SHORT).show();
+                //点击了视频发表
+                Toast.makeText(this, "视频还没做呢！", Toast.LENGTH_SHORT).show();
+
                 break;
 
         }

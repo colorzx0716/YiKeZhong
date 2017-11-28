@@ -40,11 +40,11 @@
         <activity android:name=".MainActivity" />
 
         <service
-            android:name=".DemoPushService"
+            android:name=".service.DemoPushService"
             android:exported="true"
             android:label="PushService"
             android:process=":pushservice" />
-        <service android:name=".DemoIntentService" />
+        <service android:name=".service.DemoIntentService" />
 
         <activity android:name=".LoginActivity" />
         <activity android:name=".Login2Activity" />
@@ -68,7 +68,13 @@
             android:name="Mob-AppSecret"
             android:value="919393e86173db2afbe78acc24b81fea" />
 
-        <activity android:name=".base.BaseActivity"></activity>
+        <activity android:name=".base.BaseActivity" />
+        <activity android:name=".activity.WoGuanzhuActivity" />
+        <activity android:name=".activity.CollectionActivity" />
+        <activity android:name=".activity.SouSuoActivity" />
+        <activity android:name=".activity.NoticeActivity" />
+        <activity android:name=".activity.ZuoPinActivity" />
+        <activity android:name=".activity.DuanZiActivity"></activity>
     </application>
 
 </manifest>

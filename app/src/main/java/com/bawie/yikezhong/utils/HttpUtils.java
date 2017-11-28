@@ -1,6 +1,6 @@
 package com.bawie.yikezhong.utils;
 
-import com.bawie.yikezhong.Interceptor.TokenInterceptor;
+import com.bawie.yikezhong.Interceptor.MyInterceptor;
 import com.bawie.yikezhong.api.Api;
 import com.bawie.yikezhong.service.InterfaceApi;
 
@@ -30,7 +30,7 @@ public class HttpUtils {
 
     public static class  Builder{
         OkHttpClient okHttpClient=new OkHttpClient.Builder()
-                .addInterceptor(new TokenInterceptor())
+                .addInterceptor(new MyInterceptor())
                 .connectTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(TIMEOUT, TimeUnit.SECONDS)

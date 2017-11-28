@@ -9,7 +9,7 @@ import org.json.JSONObject;
 import okhttp3.ResponseBody;
 
 /**
- * Created by 张肖肖 on 2017/11/27.
+ * 登录接口的Presenter
  */
 
 public class UserLoginPresenter extends BasePresenter {
@@ -24,19 +24,23 @@ public class UserLoginPresenter extends BasePresenter {
         }
     }
 
-    public void getUserLoginData(String mobile,String password,String taken){
-        userLoginModel.getUserLoginData(mobile, password, taken, new LoginModel.UserLoginMessage() {
+    public void getUserLoginData(String mobile,String password){
+        userLoginModel.getUserLoginData(mobile, password, new LoginModel.UserLoginMessage() {
             @Override
             public void userloginSuccess(ResponseBody value) {
                 try {
                     String json = value.string().toString();
+                    System.out.println("登录接口的请求信息： = "+json);
+
                     JSONObject jsonObject=new JSONObject(json);
                     String code = jsonObject.getString("code");
                     String msg = jsonObject.getString("msg");
+
                     if(code.equals("0")){
-                        userLoginView.userloginSuccess(value.string().toString());
+                        userLoginView.userloginSuccess(json);
+
                     }else {
-                        userLoginView.userloginFailue(value.string().toString());
+                        userLoginView.userloginFailue(json);
                     }
                 } catch (Exception e) {
                     e.printStackTrace();

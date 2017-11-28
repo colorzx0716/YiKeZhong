@@ -32,22 +32,35 @@
 
     </RelativeLayout>
 
-
-    <ImageView
-        android:id="@+id/xie_iv_img1"
-        android:layout_marginTop="@dimen/x300"
-        android:src="@mipmap/ic_launcher"
+    <RelativeLayout
         android:layout_centerHorizontal="true"
+        android:background="@drawable/bg_cz_yuan"
+        android:layout_marginTop="@dimen/x300"
         android:layout_width="@dimen/x150"
-        android:layout_height="@dimen/y150" />
-    <ImageView
-        android:layout_below="@+id/xie_iv_img1"
-        android:id="@+id/xie_iv_img2"
+        android:layout_height="@dimen/y150">
+        <ImageView
+            android:layout_centerInParent="true"
+            android:id="@+id/xie_iv_img1"
+            android:src="@mipmap/cz_duanzi"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/y100" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="@dimen/x100"
         android:layout_centerInParent="true"
-        android:src="@mipmap/ic_launcher"
+        android:background="@drawable/bg_cz_yuan"
         android:layout_width="@dimen/x150"
-        android:layout_height="@dimen/y150" />
+        android:layout_height="@dimen/y150">
+        <ImageView
+            android:layout_centerInParent="true"
+            android:id="@+id/xie_iv_img2"
+            android:src="@mipmap/cz_shipin"
+            android:layout_width="@dimen/x100"
+            android:layout_height="@dimen/y100" />
+    </RelativeLayout>
+
 
 
 </RelativeLayout>

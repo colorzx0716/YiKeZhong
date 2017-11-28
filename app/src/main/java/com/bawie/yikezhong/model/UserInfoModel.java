@@ -9,32 +9,33 @@ import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 
 /**
- * 登录的model
+ * Created by 张肖肖 on 2017/11/28.
  */
-public class LoginModel {
 
-    public void getUserLoginData(String mobile, String password, final UserLoginMessage userLoginMessage){
-        new HttpUtils.Builder().
-                addConverterFactory()
-                .addCallAdapterFactory().build().getMyQusetUtils().getUserLogin(mobile,password)
+public class UserInfoModel {
+
+    public void getUserInfoData(String uid, String token, final UserInfoMessage userInfoMessage){
+        new HttpUtils.Builder().addConverterFactory()
+                .addCallAdapterFactory().build().getMyQusetUtils().getUserInfo(uid,token)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<ResponseBody>() {
                     @Override
                     public void onSubscribe(Disposable d) {
 
-
                     }
+
                     @Override
                     public void onNext(ResponseBody value) {
-                        userLoginMessage.userloginSuccess(value);
-                        System.out.println("成功=====================");
+                        //成功
+                        userInfoMessage.userinfoSuccess(value);
                     }
 
                     @Override
                     public void onError(Throwable e) {
-                        userLoginMessage.userloginFailue(e);
-                        System.out.println("失败=====================");
+                        //失败
+                        userInfoMessage.userinfoFailue(e);
+
                     }
 
                     @Override
@@ -42,10 +43,15 @@ public class LoginModel {
 
                     }
                 });
+
     }
-    public interface UserLoginMessage{
-        void userloginSuccess(ResponseBody value);
-        void userloginFailue(Throwable e);
+
+    //接口
+    public interface UserInfoMessage{
+        void userinfoSuccess(ResponseBody value);
+        void userinfoFailue(Throwable e);
     }
+
+
 
 }

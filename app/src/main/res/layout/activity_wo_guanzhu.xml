@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.bawie.yikezhong.activity.WoGuanzhuActivity">
+
+    <RelativeLayout
+        android:background="#33ccff"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y120">
+
+        <ImageView
+            android:id="@+id/gz_back"
+            android:src="@mipmap/raw_1500023215"
+            android:scaleType="fitXY"
+            android:layout_centerInParent="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginLeft="@dimen/x30"
+            android:layout_width="@dimen/x60"
+            android:layout_height="@dimen/y60" />
+
+        <TextView
+            android:layout_toRightOf="@+id/gz_back"
+            android:textColor="#ffffff"
+            android:text="返回"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y120" />
+
+        <TextView
+            android:textColor="#ffffff"
+            android:text="我的关注"
+            android:gravity="center_vertical"
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y120" />
+
+        <TextView
+            android:id="@+id/gz_remen"
+            android:layout_alignParentRight="true"
+            android:textColor="#ffffff"
+            android:text="热门关注"
+            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y120" />
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:background="#ffff00"
+        android:layout_marginTop="@dimen/y120"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></FrameLayout>
+
+</RelativeLayout>

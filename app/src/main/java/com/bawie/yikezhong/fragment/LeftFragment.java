@@ -1,6 +1,8 @@
 package com.bawie.yikezhong.fragment;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -14,11 +16,15 @@ import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.Toast;
+import android.widget.TextView;
 
 import com.bawie.yikezhong.LoginActivity;
 import com.bawie.yikezhong.R;
 import com.bawie.yikezhong.SheZhiActivity;
+import com.bawie.yikezhong.activity.CollectionActivity;
+import com.bawie.yikezhong.activity.NoticeActivity;
+import com.bawie.yikezhong.activity.SouSuoActivity;
+import com.bawie.yikezhong.activity.WoGuanzhuActivity;
 import com.bawie.yikezhong.adapter.MyListAdapter;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
@@ -42,6 +48,10 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     private MyListAdapter myListAdapter;
     private LinearLayout left_zuopin;
     private LinearLayout left_shezhi;
+    private SharedPreferences sp;
+    private String icon;
+    private String nickname;
+    private TextView left_tv_nicheng;
 
 
     @Nullable
@@ -60,16 +70,6 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
         initList();//添加文字
         initView();//初始化
 
-        //头像圆形
-        Glide.with(this).load(R.mipmap.touxiang).asBitmap().centerCrop().into(new BitmapImageViewTarget(left_touxiang){
-            @Override
-            protected void setResource(Bitmap resource) {
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
-                circularBitmapDrawable.setCircular(true);
-                left_touxiang.setImageDrawable(circularBitmapDrawable);
-            }
-        });
 
         //点击头像进入选择登录页面
         left_touxiang.setOnClickListener(this);
@@ -77,7 +77,6 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
         left_zuopin.setOnClickListener(this);
         //点击设置的图片
         left_shezhi.setOnClickListener(this);
-
 
         //listview的适配器
         myListAdapter = new MyListAdapter(getContext(),tvs,imgs);
@@ -89,26 +88,34 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
            @Override
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
              if(i == 0){
-                 Toast.makeText(getContext(), "0", Toast.LENGTH_SHORT).show();
+                 //我的关注
+                 Intent intent = new Intent(getContext(), WoGuanzhuActivity.class);
+                 startActivity(intent);
+
              }
 
                if(i == 1){
-                   Toast.makeText(getContext(), "1", Toast.LENGTH_SHORT).show();
+                   //我的收藏
+                   Intent intent = new Intent(getContext(),CollectionActivity.class);
+                   startActivity(intent);
+
                }
 
                if(i == 2){
-                   Toast.makeText(getContext(), "2", Toast.LENGTH_SHORT).show();
+                 //搜索好友
+                   Intent intent = new Intent(getContext(), SouSuoActivity.class);
+                   startActivity(intent);
+
                }
 
                if(i == 3){
-                   Toast.makeText(getContext(), "3", Toast.LENGTH_SHORT).show();
+                  //消息通知
+                   Intent intent = new Intent(getContext(), NoticeActivity.class);
+                   startActivity(intent);
                }
 
-
-
-           }
+          }
        });
-
 
     }
 
@@ -133,10 +140,46 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
         //listview 的id
         left_lv = view.findViewById(R.id.left_lv);
 
+        //昵称
+        left_tv_nicheng = view.findViewById(R.id.left_tv_nicheng);
+
         //我的作品的布局ID
         left_zuopin = view.findViewById(R.id.left_zuopin);
         //设置的布局ID
         left_shezhi = view.findViewById(R.id.left_shezhi);
+
+        //头像圆形
+        Glide.with(this).load(R.mipmap.touxiang).asBitmap().centerCrop().into(new BitmapImageViewTarget(left_touxiang){
+            @Override
+            protected void setResource(Bitmap resource) {
+                RoundedBitmapDrawable circularBitmapDrawable =
+                        RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
+                circularBitmapDrawable.setCircular(true);
+                left_touxiang.setImageDrawable(circularBitmapDrawable);
+            }
+        });
+
+        sp = getContext().getSharedPreferences("sp", Context.MODE_PRIVATE);
+        //登录之后赋值
+        boolean b = sp.getBoolean("isfirst", false);
+        if(b){
+            icon = sp.getString("icon", String.valueOf(R.mipmap.touxiang));
+            nickname = sp.getString("nickname", "昵称");
+
+            //头像圆形
+            Glide.with(this).load(icon).asBitmap().centerCrop().into(new BitmapImageViewTarget(left_touxiang){
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    left_touxiang.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+
+            //昵称
+            left_tv_nicheng.setText(nickname);
+        }
 
 
     }
@@ -153,6 +196,8 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
 
             case R.id.left_zuopin:
                 //点击我的作品
+                Intent intent2 = new Intent(getContext(), WoGuanzhuActivity.class);
+                startActivity(intent2);
 
                 break;
 
@@ -164,11 +209,6 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
 
         }
     }
-
-
-    //条目点击事件
-
-
 
 
 }

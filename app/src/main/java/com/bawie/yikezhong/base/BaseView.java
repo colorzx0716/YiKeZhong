@@ -1,7 +1,7 @@
 package com.bawie.yikezhong.base;
 
 /**
- * Created by 张肖肖 on 2017/11/27.
+ * 基础的类，可以自由调用
  */
 
 public interface BaseView {

@@ -1,6 +1,7 @@
 package com.bawie.yikezhong;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -12,9 +13,11 @@ import android.widget.Toast;
 
 import com.bawie.yikezhong.base.BaseActivity;
 import com.bawie.yikezhong.base.BasePresenter;
+import com.bawie.yikezhong.bean.LoginBean;
 import com.bawie.yikezhong.presenter.UserLoginPresenter;
 import com.bawie.yikezhong.view.LoginView;
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -33,6 +36,7 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
     private ImageView login2_iv_top;
 
     private UserLoginPresenter userLoginPresenter;
+    private SharedPreferences sp;
 
     @Override
     public List<BasePresenter> initPresenter() {
@@ -45,6 +49,8 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
+
+        sp = getSharedPreferences("sp", MODE_PRIVATE);
 
         //圆角图片
         login2_iv_top = findViewById(R.id.login2_iv_top);
@@ -69,6 +75,7 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
                 .bitmapTransform(new GlideCircleTransform(this,10))
                 .into(login2_iv_top);
 
+        //登录接口的Presenter
         userLoginPresenter = new UserLoginPresenter(this);
 
         //点击事件
@@ -79,7 +86,6 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
         login2_tv_login.setOnClickListener(this);
 
     }
-
 
     @Override
     public void onClick(View view) {
@@ -108,7 +114,8 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
                     Toast.makeText(this, "密码或者用户名为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                userLoginPresenter.getUserLoginData(login2_et_phone.getText().toString(), login2_et_pwd.getText().toString(), null);
+                sp.edit().putBoolean("isfirst",false).commit();
+                userLoginPresenter.getUserLoginData(login2_et_phone.getText().toString(), login2_et_pwd.getText().toString());
 
                 break;
 
@@ -128,7 +135,6 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
                 overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                 break;
 
-
         }
 
     }
@@ -142,12 +148,31 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
     @Override
     public void failure() {
 
+        Toast.makeText(this, "失败了", Toast.LENGTH_SHORT).show();
+
     }
 
     @Override
     public void userloginSuccess(String string) {
-        Toast.makeText(this, "成功！！！！！", Toast.LENGTH_SHORT).show();
-        //游客登录
+        Toast.makeText(this, "成功", Toast.LENGTH_SHORT).show();
+
+        String result = string.toString();
+
+        System.out.println("Login2页面的请求" + result);
+        Gson gson = new Gson();
+        LoginBean loginBean = gson.fromJson(result, LoginBean.class);
+
+        String uid = String.valueOf(loginBean.data.uid);
+        String token = loginBean.data.token;
+
+        //保存在SharedPreferences里面
+        SharedPreferences.Editor edit = sp.edit();
+        edit.putBoolean("isfirst",true);
+        edit.putString("uid",uid);
+        edit.putString("token",token);
+        edit.commit();//提交
+
+
         Intent intent3 = new Intent(Login2Activity.this,MainActivity.class);
         startActivity(intent3);
         finish();
@@ -159,5 +184,6 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
     public void userloginFailue(String string) {
 
         Toast.makeText(this, "失败", Toast.LENGTH_SHORT).show();
+
     }
 }

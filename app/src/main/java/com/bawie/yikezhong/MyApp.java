@@ -2,6 +2,8 @@ package com.bawie.yikezhong;
 
 import android.app.Application;
 
+import com.bawie.yikezhong.service.DemoIntentService;
+import com.bawie.yikezhong.service.DemoPushService;
 import com.igexin.sdk.PushManager;
 import com.mob.MobSDK;
 import com.squareup.leakcanary.LeakCanary;

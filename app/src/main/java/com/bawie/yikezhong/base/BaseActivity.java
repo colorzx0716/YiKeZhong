@@ -7,6 +7,9 @@ import com.bawie.yikezhong.R;
 
 import java.util.List;
 
+/**
+ * 解绑
+ */
 public abstract class BaseActivity extends AppCompatActivity {
 
     public abstract List<BasePresenter> initPresenter();//初始化数据

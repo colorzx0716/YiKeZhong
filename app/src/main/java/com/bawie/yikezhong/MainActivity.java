@@ -1,6 +1,7 @@
 package com.bawie.yikezhong;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -9,21 +10,27 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bawie.yikezhong.base.BaseActivity;
 import com.bawie.yikezhong.base.BasePresenter;
+import com.bawie.yikezhong.bean.UserBean;
 import com.bawie.yikezhong.fragment.Fragment1;
 import com.bawie.yikezhong.fragment.Fragment2;
 import com.bawie.yikezhong.fragment.Fragment3;
 import com.bawie.yikezhong.fragment.LeftFragment;
 import com.bawie.yikezhong.fragment.RightFragment;
+import com.bawie.yikezhong.presenter.UserInfoPresenter;
+import com.bawie.yikezhong.view.UserInfoView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.google.gson.Gson;
 import com.kson.slidingmenu.SlidingMenu;
 
+import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity implements View.OnClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, UserInfoView {
 
     private ImageView main_touxiang;
     private ImageView main_xie;
@@ -35,10 +42,16 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
     private ImageView main_shipin;
     private TextView main_tv_shipin;
     private SlidingMenu menu;
+    private UserInfoPresenter userInfoPresenter;
+    private SharedPreferences sp;
+    private String icon;
+    private String nickname;
 
     @Override
     public List<BasePresenter> initPresenter() {
-        return null;
+        List<BasePresenter> list = new ArrayList<>();
+        list.add(userInfoPresenter);
+        return list;
     }
 
     @Override
@@ -46,6 +59,14 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        //用户信息的Presenter
+        userInfoPresenter = new UserInfoPresenter(this);
+
+        sp = getSharedPreferences("sp", MODE_PRIVATE);
+        String uid = sp.getString("uid", "146");
+        String token = sp.getString("token", "929A310F425923598C7F3495BCAAA278");
+
+        userInfoPresenter.getUserInfoData(uid,token);
 
         //头像
         main_touxiang = findViewById(R.id.main_touxiang);
@@ -53,7 +74,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         main_xie = findViewById(R.id.main_xie);
         //随意更改的标题文字
         main_head_tv = findViewById(R.id.main_head_tv);
-
 
         //推荐
         main_tuijian = findViewById(R.id.main_tuijian);
@@ -66,6 +86,20 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         //视频
         main_shipin = findViewById(R.id.main_shipin);
         main_tv_shipin = findViewById(R.id.main_tv_shipin);
+
+
+
+            //第二次
+            Glide.with(this).load(icon).asBitmap().centerCrop().into(new BitmapImageViewTarget(main_touxiang){
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(MainActivity.this.getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    main_touxiang.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+
 
 
         //点击事件
@@ -87,16 +121,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
         initMenu();
 
 
-
-        Glide.with(this).load(R.mipmap.touxiang).asBitmap().centerCrop().into(new BitmapImageViewTarget(main_touxiang){
-            @Override
-            protected void setResource(Bitmap resource) {
-                RoundedBitmapDrawable circularBitmapDrawable =
-                        RoundedBitmapDrawableFactory.create(MainActivity.this.getResources(), resource);
-                circularBitmapDrawable.setCircular(true);
-                main_touxiang.setImageDrawable(circularBitmapDrawable);
-            }
-        });
     }
 
     /**
@@ -171,6 +195,44 @@ public class MainActivity extends BaseActivity implements View.OnClickListener {
                 break;
 
         }
+
+    }
+
+    @Override
+    public void success() {
+
+    }
+
+    @Override
+    public void failure() {
+
+    }
+
+    @Override
+    public void userinfoSuccess(String string) {
+        Toast.makeText(this, "成功", Toast.LENGTH_SHORT).show();
+        String result = string.toString();
+
+        System.out.println("Login2页面的请求" + result);
+        Gson gson = new Gson();
+        UserBean userBean = gson.fromJson(result, UserBean.class);
+        //属性
+        //头像
+        icon = userBean.data.icon;
+        //昵称
+        nickname = userBean.data.nickname;
+
+        //保存到sp
+        sp.edit().putString("icon",icon).commit();
+        sp.edit().putString("nickname",nickname).commit();
+
+
+    }
+
+    @Override
+    public void userinfoFailue(String string) {
+
+        Toast.makeText(this, "失败", Toast.LENGTH_SHORT).show();
 
     }
 }

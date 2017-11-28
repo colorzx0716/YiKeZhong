@@ -1,7 +1,7 @@
 package com.bawie.yikezhong.model;
 
 /**
- * Created by 张肖肖 on 2017/11/27.
+ * 注册的model
  */
 
 public class UserRegModel {

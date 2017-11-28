@@ -1,4 +1,4 @@
-package com.bawie.yikezhong;
+package com.bawie.yikezhong.service;
 
 import android.app.Service;
 import android.content.Intent;
