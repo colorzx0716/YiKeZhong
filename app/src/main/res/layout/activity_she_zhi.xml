@@ -39,10 +39,54 @@
 
     </RelativeLayout>
 
+    <View
+        android:background="@color/lavender"
+        android:layout_marginTop="@dimen/x120"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"/>
+
+   <LinearLayout
+       android:layout_marginTop="@dimen/x130"
+       android:orientation="horizontal"
+       android:background="@color/yellow"
+       android:layout_width="match_parent"
+       android:layout_height="@dimen/x150"></LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/x280"
+        android:orientation="horizontal"
+        android:background="@color/magenta"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x150"></LinearLayout>
+    <View
+        android:background="@color/lavender"
+        android:layout_marginTop="@dimen/x430"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x10"/>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/x440"
+        android:orientation="horizontal"
+        android:background="@color/yellow"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x150"></LinearLayout>
+
+    <LinearLayout
+        android:layout_marginTop="@dimen/x590"
+        android:orientation="horizontal"
+        android:background="@color/magenta"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x150"></LinearLayout>
+
+    <RelativeLayout
+        android:layout_marginTop="@dimen/x130"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x150"></RelativeLayout>
+
 
     <Button
         android:id="@+id/shezhi_login_clear"
-        android:layout_marginTop="@dimen/x500"
+        android:layout_marginTop="@dimen/x800"
         android:background="@drawable/bg_login_shape"
         android:textColor="#ffffff"
         android:text="退出登录"

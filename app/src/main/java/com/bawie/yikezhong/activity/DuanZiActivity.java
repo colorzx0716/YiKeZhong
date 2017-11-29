@@ -17,6 +17,7 @@ import java.util.List;
 
 /**
  * 发表段子的页面
+ *
  */
 public class DuanZiActivity extends BaseActivity implements View.OnClickListener, PublicView {
 
@@ -77,7 +78,8 @@ public class DuanZiActivity extends BaseActivity implements View.OnClickListener
                 token = sp.getString("token", "929A310F425923598C7F3495BCAAA278");
 
                 String content = dz_et_content.getText().toString();
-                System.out.println("content = " + content);
+                System.out.println("写的内容=======" + content);
+
 
                 publicPresenter.getPublicData(uid,content,token);
                 finish();

@@ -7,7 +7,6 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
-import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -17,6 +16,7 @@ import com.bawie.yikezhong.R;
 import com.bawie.yikezhong.bean.UserJoker;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
 import java.util.List;
 
@@ -24,10 +24,11 @@ import java.util.List;
  * 段子页面的recyclerview的适配器
  */
 
-public class MyFg2Adapter extends RecyclerView.Adapter<MyFg2Adapter.MyViewHolder>{
+public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolder> implements View.OnClickListener {
 
     private final Context context;
     private final List<UserJoker.DataBean> data;
+    private OnItemClickListener onItemClickListener;
 
     //动画
     private int a=0;
@@ -41,15 +42,22 @@ public class MyFg2Adapter extends RecyclerView.Adapter<MyFg2Adapter.MyViewHolder
     private ObjectAnimator fanimator3;
 
 
+
     public MyFg2Adapter(Context context, List<UserJoker.DataBean> data) {
         this.context = context;
         this.data = data;
+
+    }
+
+    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(context, R.layout.rv_list_item, null);
         MyViewHolder holder = new MyViewHolder(view);
+        view.setOnClickListener(this);
         return holder;
     }
 
@@ -59,6 +67,9 @@ public class MyFg2Adapter extends RecyclerView.Adapter<MyFg2Adapter.MyViewHolder
         holder.rv_list_duanzi.setText(data.get(position).content);
         holder.rv_list_nicheng.setText(data.get(position).user.nickname);
         holder.rv_list_date.setText(data.get(position).createTime);
+
+        //将position保存在itemview的Tag中，以便点击时获取
+        holder.itemView.setTag(position);
 
         //第一次
         Glide.with(context).load(data.get(position).user.icon).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.rv_list_touxiang){
@@ -153,13 +164,7 @@ public class MyFg2Adapter extends RecyclerView.Adapter<MyFg2Adapter.MyViewHolder
 
         });
 
-
-
-
-
         //============
-
-
 
     }
 
@@ -168,7 +173,15 @@ public class MyFg2Adapter extends RecyclerView.Adapter<MyFg2Adapter.MyViewHolder
         return data.size();
     }
 
-    class MyViewHolder extends RecyclerView.ViewHolder{
+    //自动生成的点击方法
+    @Override
+    public void onClick(View view) {
+        if(onItemClickListener != null){
+            onItemClickListener.onItemClick(view, (int) view.getTag());
+        }
+    }
+
+    class MyViewHolder extends XRecyclerView.ViewHolder{
 
         private final ImageView rv_list_touxiang;//头像
         private final TextView rv_list_date,rv_list_duanzi;//日期,段子
@@ -197,5 +210,11 @@ public class MyFg2Adapter extends RecyclerView.Adapter<MyFg2Adapter.MyViewHolder
 
         }
     }
+
+    //模拟ListView的条目点击事件
+    public static interface OnItemClickListener{
+        void onItemClick(View view,int position);
+    }
+
 
 }
