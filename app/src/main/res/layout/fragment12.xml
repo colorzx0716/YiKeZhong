@@ -1,11 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent" android:layout_height="match_parent">
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
-    <TextView
-        android:background="#ff2222"
-        android:text="fragment12"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+    <ImageView
+        android:scaleType="fitXY"
+        android:src="@drawable/raw_1500002643"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x320" />
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:layout_marginTop="@dimen/x400"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.jcodecraeer.xrecyclerview.XRecyclerView>
+
+
 
 </RelativeLayout>

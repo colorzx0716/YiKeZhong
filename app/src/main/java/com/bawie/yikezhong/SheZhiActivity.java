@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 /**
  *
@@ -19,7 +20,10 @@ public class SheZhiActivity extends AppCompatActivity implements View.OnClickLis
     private Button shezhi_login_clear;
 
     private SharedPreferences sp;
-
+    private TextView she_tv_gengxin;
+    private TextView she_tv_yijian;
+    private TextView she_tv_guanyu;
+    private TextView she_tv_huancun;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,6 +42,13 @@ public class SheZhiActivity extends AppCompatActivity implements View.OnClickLis
         shezhi_back = findViewById(R.id.shezhi_back);
         //退出登陆的按钮
         shezhi_login_clear = findViewById(R.id.shezhi_login_clear);
+
+        //依次是
+        she_tv_gengxin = findViewById(R.id.she_tv_gengxin);
+        she_tv_yijian = findViewById(R.id.she_tv_yijian);
+        she_tv_guanyu = findViewById(R.id.she_tv_guanyu);
+        she_tv_huancun = findViewById(R.id.she_tv_huancun);
+
 
     }
 

@@ -67,7 +67,6 @@ public class Fragment2 extends Fragment implements UserJokerView{
         fg2_rv.setPullRefreshEnabled(true);
 
         linearLayoutManager = new LinearLayoutManager(getContext());
-
         fg2_rv.setLayoutManager(linearLayoutManager);
 
     }
@@ -130,7 +129,6 @@ public class Fragment2 extends Fragment implements UserJokerView{
 
             @Override
             public void onLoadMore() {
-
                 p++;
                 userJokerPresenter.getJokesData(p+"","");
                 Toast.makeText(getContext(), "加载", Toast.LENGTH_SHORT).show();
