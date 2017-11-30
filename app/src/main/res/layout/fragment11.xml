@@ -5,13 +5,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <com.stx.xhb.xbanner.XBanner
+        android:id="@+id/fg11_xbanner"
         app:pointNormal="@drawable/dot_normal"
         app:pointSelect="@drawable/dot_select"
-        android:id="@+id/fg11_xbanner"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x320"></com.stx.xhb.xbanner.XBanner>
+        android:layout_height="@dimen/y320"></com.stx.xhb.xbanner.XBanner>
 
 
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:background="#ffff00"
+        android:layout_marginTop="@dimen/y320"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
 
 </RelativeLayout>

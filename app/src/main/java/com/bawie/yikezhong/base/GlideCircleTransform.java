@@ -1,4 +1,4 @@
-package com.bawie.yikezhong;
+package com.bawie.yikezhong.base;
 
 import android.content.Context;
 import android.content.res.Resources;

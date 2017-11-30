@@ -43,15 +43,15 @@
     <View
         android:id="@+id/she_v1"
         android:background="@color/lavender"
-        android:layout_marginTop="@dimen/x120"
+        android:layout_marginTop="@dimen/y120"
         android:layout_width="match_parent"
         android:layout_height="@dimen/x10"/>
 
    <RelativeLayout
-       android:layout_marginTop="@dimen/x130"
+       android:layout_marginTop="@dimen/y130"
        android:orientation="horizontal"
        android:layout_width="match_parent"
-       android:layout_height="@dimen/x120">
+       android:layout_height="@dimen/y120">
 
        <TextView
            android:id="@+id/she_tv_gengxin"
@@ -83,10 +83,10 @@
    </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="@dimen/x280"
+        android:layout_marginTop="@dimen/y280"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x120">
+        android:layout_height="@dimen/y120">
         <TextView
             android:id="@+id/she_tv_yijian"
             android:gravity="center"
@@ -111,13 +111,13 @@
         android:background="@color/lavender"
         android:layout_marginTop="@dimen/x430"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x10"/>
+        android:layout_height="@dimen/y10"/>
 
     <RelativeLayout
-        android:layout_marginTop="@dimen/x440"
+        android:layout_marginTop="@dimen/y440"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x120">
+        android:layout_height="@dimen/y120">
         <TextView
             android:id="@+id/she_tv_guanyu"
             android:gravity="center"
@@ -137,10 +137,10 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:layout_marginTop="@dimen/x590"
+        android:layout_marginTop="@dimen/y590"
         android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x120">
+        android:layout_height="@dimen/y120">
         <TextView
             android:id="@+id/she_tv_huancun"
             android:gravity="center"

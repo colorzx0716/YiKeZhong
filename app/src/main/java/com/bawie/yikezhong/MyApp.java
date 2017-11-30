@@ -1,6 +1,7 @@
 package com.bawie.yikezhong;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.bawie.yikezhong.service.DemoIntentService;
 import com.bawie.yikezhong.service.DemoPushService;
@@ -11,6 +12,8 @@ import com.squareup.leakcanary.LeakCanary;
 
 
 public class MyApp extends Application {
+
+    public static Context context;
 
     @Override
     public void onCreate() {

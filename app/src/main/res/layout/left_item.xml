@@ -13,7 +13,7 @@
             android:id="@+id/left_touxiang"
             android:src="@mipmap/touxiang"
             android:scaleType="fitXY"
-            android:layout_marginTop="@dimen/x120"
+            android:layout_marginTop="@dimen/y120"
             android:layout_alignParentLeft="true"
             android:layout_marginLeft="@dimen/x30"
             android:layout_width="@dimen/x150"
@@ -24,7 +24,7 @@
             android:layout_toRightOf="@+id/left_touxiang"
             android:textColor="#ffffff"
             android:text="昵称"
-            android:layout_marginTop="@dimen/x240"
+            android:layout_marginTop="@dimen/y240"
             android:layout_marginLeft="@dimen/x60"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />
@@ -32,14 +32,14 @@
         <ImageView
             android:src="@mipmap/sex"
             android:scaleType="fitXY"
-            android:layout_marginTop="@dimen/x200"
+            android:layout_marginTop="@dimen/y200"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/x30"
             android:layout_width="@dimen/x80"
             android:layout_height="@dimen/y80" />
 
         <TextView
-            android:layout_marginTop="@dimen/x30"
+            android:layout_marginTop="@dimen/y30"
             android:layout_marginLeft="@dimen/x20"
             android:layout_below="@id/left_touxiang"
             android:textColor="#ffffff"

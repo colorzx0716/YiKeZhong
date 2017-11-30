@@ -13,7 +13,6 @@ import org.json.JSONObject;
 
 public class PublicPresenter extends BasePresenter{
 
-
     private PublicView publicView;
     private PublicModel publicModel;
 
@@ -25,39 +24,42 @@ public class PublicPresenter extends BasePresenter{
         }
     }
 
-    public void getPublicData(String uid, String content, String token){
-        publicModel.getPublicData(uid, content, token, new PublicModel.UserPublicMessage() {
+    public void getPublishJokeData(String uid, String content, String token){
+        publicModel.getPublicData(uid, content, token, new PublicModel.PublishJokeMessage() {
             @Override
-            public void getPublicSuccess(PublishBean value) {
+            public void userloginSuccess(PublishBean value) {
+
                 try {
-                 String json = value.toString();
+                    String json = value.toString();
+                    System.out.println("登录接口的请求信息： = "+json);
 
                     JSONObject jsonObject=new JSONObject(json);
                     String code = jsonObject.getString("code");
                     String msg = jsonObject.getString("msg");
 
                     if(code.equals("0")){
-                        publicView.getPublicSuccess(msg);
-                        System.out.println(msg);
+                        publicView.userloginSuccess(value);
 
                     }else {
-                        publicView.getPublicFailure(msg);
-                        System.out.println(msg);
+                        publicView.userloginFailue(msg);
                     }
-
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
-
             }
 
             @Override
-            public void getPublicFailure(Throwable e) {
-                publicView.failure();
+            public void userloginFailue(Throwable e) {
+                publicView.failure();//彻底失败
             }
         });
 
+
     }
+
+
+
+
 
 
 

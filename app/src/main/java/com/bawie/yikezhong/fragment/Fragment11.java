@@ -7,8 +7,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bawie.yikezhong.R;
+import com.bawie.yikezhong.bean.AdBean;
+import com.bawie.yikezhong.presenter.AdPresenter;
+import com.bawie.yikezhong.view.AdView;
 import com.bumptech.glide.Glide;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
@@ -17,12 +21,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Fragment11 extends Fragment {
+public class Fragment11 extends Fragment implements AdView {
 
     private View view;
     private XBanner fg11_xbanner;
     private List<String> imgs;
     private List<String> titles;
+    private AdPresenter adPresenter;
 
     @Nullable
     @Override
@@ -45,15 +50,54 @@ public class Fragment11 extends Fragment {
 
     //初始化
     private void initData() {
+
+        adPresenter = new AdPresenter(this);
+        adPresenter.getAdData();
+
+    }
+
+    //初始化控件
+    private void initView() {
+        //Xbanner控件
+        fg11_xbanner = view.findViewById(R.id.fg11_xbanner);
+    }
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        fg11_xbanner.startAutoPlay();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        fg11_xbanner.stopAutoPlay();
+    }
+
+    @Override
+    public void success() {
+
+    }
+
+    @Override
+    public void failure() {
+        System.out.println("彻底失败");
+
+    }
+
+    @Override
+    public void AdSuccess(AdBean adBean) {
+
         imgs = new ArrayList<>();
         titles = new ArrayList<>();
 
-        imgs.add("http://img15.3lian.com/2015/a1/16/d/205.jpg");
-        imgs.add("https://cdn.duitang.com/uploads/item/201506/20/20150620013123_uirKf.jpeg");
-        imgs.add("http://img2.100bt.com/upload/ttq/20131208/1386496341645_middle.jpg");
-        titles.add("");
-        titles.add("");
-        titles.add("");
+
+        List<AdBean.DataBean> data = adBean.data;
+        for (int i = 0; i < data.size(); i++) {
+            imgs.add(data.get(i).icon);
+            titles.add("");
+        }
 
         //绑定数据
         fg11_xbanner.setData(imgs,titles);
@@ -71,23 +115,15 @@ public class Fragment11 extends Fragment {
         fg11_xbanner.setPageChangeDuration(2000);
 
 
-    }
-
-    //初始化控件
-    private void initView() {
-        fg11_xbanner = view.findViewById(R.id.fg11_xbanner);
-    }
 
 
-    @Override
-    public void onResume() {
-        super.onResume();
-        fg11_xbanner.startAutoPlay();
+
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
-        fg11_xbanner.stopAutoPlay();
+    public void AdFailue(String e) {
+        Toast.makeText(getContext(), "失败", Toast.LENGTH_SHORT).show();
+
+
     }
 }

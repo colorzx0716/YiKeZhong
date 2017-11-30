@@ -11,6 +11,7 @@ import android.widget.Toast;
 
 import com.bawie.yikezhong.base.BaseActivity;
 import com.bawie.yikezhong.base.BasePresenter;
+import com.bawie.yikezhong.base.GlideCircleTransform;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
@@ -33,7 +34,10 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
+        //手动隐藏标题
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
         sp = getSharedPreferences("sp", MODE_PRIVATE);
 
 

@@ -8,10 +8,10 @@
         android:scaleType="fitXY"
         android:src="@drawable/raw_1500002643"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x320" />
+        android:layout_height="@dimen/y320" />
 
     <com.jcodecraeer.xrecyclerview.XRecyclerView
-        android:layout_marginTop="@dimen/x400"
+        android:layout_marginTop="@dimen/y320"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 

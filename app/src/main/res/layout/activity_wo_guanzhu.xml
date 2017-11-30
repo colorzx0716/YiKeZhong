@@ -49,10 +49,11 @@
 
     </RelativeLayout>
 
-    <FrameLayout
+    <ListView
+        android:id="@+id/gz_lv"
         android:background="#ffff00"
         android:layout_marginTop="@dimen/y120"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"></FrameLayout>
+        android:layout_height="match_parent"></ListView>
 
 </RelativeLayout>

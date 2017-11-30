@@ -72,7 +72,7 @@
             <TextView
                 android:id="@+id/main_tv_tuijian"
                 android:text="推荐"
-                android:layout_marginBottom="@dimen/x5"
+                android:layout_marginBottom="@dimen/y5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -95,7 +95,7 @@
             <TextView
                 android:id="@+id/main_tv_duanzi"
                 android:text="段子"
-                android:layout_marginBottom="@dimen/x5"
+                android:layout_marginBottom="@dimen/y5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 
@@ -118,7 +118,7 @@
             <TextView
                 android:id="@+id/main_tv_shipin"
                 android:text="视频"
-                android:layout_marginBottom="@dimen/x5"
+                android:layout_marginBottom="@dimen/y5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"/>
 

@@ -28,13 +28,11 @@ public class LoginModel {
                     @Override
                     public void onNext(ResponseBody value) {
                         userLoginMessage.userloginSuccess(value);
-                        System.out.println("成功=====================");
                     }
 
                     @Override
                     public void onError(Throwable e) {
                         userLoginMessage.userloginFailue(e);
-                        System.out.println("失败=====================");
                     }
 
                     @Override

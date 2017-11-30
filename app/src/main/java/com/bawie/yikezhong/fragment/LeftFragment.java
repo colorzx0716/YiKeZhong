@@ -17,6 +17,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bawie.yikezhong.LoginActivity;
 import com.bawie.yikezhong.R;
@@ -26,8 +27,12 @@ import com.bawie.yikezhong.activity.NoticeActivity;
 import com.bawie.yikezhong.activity.SouSuoActivity;
 import com.bawie.yikezhong.activity.WoGuanzhuActivity;
 import com.bawie.yikezhong.adapter.MyListAdapter;
+import com.bawie.yikezhong.bean.UserBean;
+import com.bawie.yikezhong.presenter.UserInfoPresenter;
+import com.bawie.yikezhong.view.UserInfoView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +42,7 @@ import java.util.List;
  * Created by 张肖肖 on 2017/11/14.
  */
 
-public class LeftFragment extends Fragment implements View.OnClickListener {
+public class LeftFragment extends Fragment implements View.OnClickListener, UserInfoView {
 
     private View view;
     private ImageView left_touxiang;
@@ -49,9 +54,10 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     private LinearLayout left_zuopin;
     private LinearLayout left_shezhi;
     private SharedPreferences sp;
-    private String icon;
-    private String nickname;
     private TextView left_tv_nicheng;
+
+
+    private UserInfoPresenter userInfoPresenter;
 
 
     @Nullable
@@ -67,6 +73,8 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+
+        sp = getContext().getSharedPreferences("sp", Context.MODE_PRIVATE);
         initList();//添加文字
         initView();//初始化
 
@@ -139,10 +147,8 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
         left_touxiang = view.findViewById(R.id.left_touxiang);
         //listview 的id
         left_lv = view.findViewById(R.id.left_lv);
-
         //昵称
         left_tv_nicheng = view.findViewById(R.id.left_tv_nicheng);
-
         //我的作品的布局ID
         left_zuopin = view.findViewById(R.id.left_zuopin);
         //设置的布局ID
@@ -159,27 +165,14 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
             }
         });
 
-        sp = getContext().getSharedPreferences("sp", Context.MODE_PRIVATE);
-        //登录之后赋值
-        boolean b = sp.getBoolean("isfirst", false);
-        if(b){
-            icon = sp.getString("icon", String.valueOf(R.mipmap.touxiang));
-            nickname = sp.getString("nickname", "昵称");
+        //=================
+        //用户信息的Presenter
+        String uid = sp.getString("uid", "146");
+        String token = sp.getString("token", "929A310F425923598C7F3495BCAAA278");
 
-            //头像圆形
-            Glide.with(this).load(icon).asBitmap().centerCrop().into(new BitmapImageViewTarget(left_touxiang){
-                @Override
-                protected void setResource(Bitmap resource) {
-                    RoundedBitmapDrawable circularBitmapDrawable =
-                            RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
-                    circularBitmapDrawable.setCircular(true);
-                    left_touxiang.setImageDrawable(circularBitmapDrawable);
-                }
-            });
+        userInfoPresenter = new UserInfoPresenter(this);
+        userInfoPresenter.getUserInfoData(uid,token);
 
-            //昵称
-            left_tv_nicheng.setText(nickname);
-        }
 
 
     }
@@ -211,4 +204,53 @@ public class LeftFragment extends Fragment implements View.OnClickListener {
     }
 
 
+    @Override
+    public void success() {
+
+    }
+
+    @Override
+    public void failure() {
+
+    }
+
+    @Override
+    public void userinfoSuccess(String string) {
+   Toast.makeText(getContext(), "====获取用户信息成功====", Toast.LENGTH_SHORT).show();
+        String result = string.toString();
+
+        Gson gson = new Gson();
+        UserBean userBean = gson.fromJson(result, UserBean.class);
+        //属性
+        //头像
+        String icon = userBean.data.icon;
+        //昵称
+        String nickname = userBean.data.nickname;
+
+        //==================
+
+        boolean isfirst = sp.getBoolean("isfirst", false);
+        if(isfirst){
+
+            Glide.with(this).load(icon).asBitmap().centerCrop().into(new BitmapImageViewTarget(left_touxiang){
+                @Override
+                protected void setResource(Bitmap resource) {
+                    RoundedBitmapDrawable circularBitmapDrawable =
+                            RoundedBitmapDrawableFactory.create(getContext().getResources(), resource);
+                    circularBitmapDrawable.setCircular(true);
+                    left_touxiang.setImageDrawable(circularBitmapDrawable);
+                }
+            });
+            //昵称
+            left_tv_nicheng.setText(nickname);
+
+            //====================
+        }
+
+    }
+
+    @Override
+    public void userinfoFailue(String string) {
+        Toast.makeText(getContext(), "失败", Toast.LENGTH_SHORT).show();
+    }
 }

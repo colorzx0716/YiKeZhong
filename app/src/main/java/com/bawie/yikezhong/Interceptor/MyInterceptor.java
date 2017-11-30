@@ -29,7 +29,7 @@ public class MyInterceptor implements Interceptor {
         MediaType mediaType = response.body().contentType();
         String content = response.body().string();
         Log.d(TAG,"\n");
-        Log.d(TAG,"----------Start----------------");
+        Log.d(TAG,"----------Start---------");
         Log.d(TAG, "| "+request.toString());
         String method=request.method();
         if("POST".equals(method)){

@@ -1,5 +1,7 @@
 package com.bawie.yikezhong.service;
 
+import com.bawie.yikezhong.bean.AdBean;
+import com.bawie.yikezhong.bean.FollowBean;
 import com.bawie.yikezhong.bean.PublishBean;
 import com.bawie.yikezhong.bean.UserJoker;
 
@@ -7,6 +9,7 @@ import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
 
@@ -26,10 +29,6 @@ public interface InterfaceApi {
     @POST("user/reg")
     Observable<ResponseBody> getUserReg(@Query("mobile") String mobile,@Query("password") String password);
 
-    //上传头像接口
-    @POST("file/upload")
-    Observable<ResponseBody> getFileUpload();
-
     //获取用户信息接口
     @POST("user/getUserInfo")
     Observable<ResponseBody> getUserInfo(@Query("uid") String uid,@Query("token") String token);
@@ -39,10 +38,21 @@ public interface InterfaceApi {
     @FormUrlEncoded
     Observable<UserJoker> getUserJokes(@Field("page") String page, @Field("token") String token);
 
-    //发布段子
+    //发布段子和图片
     @POST("quarter/publishJoke")
     @FormUrlEncoded
-    Observable<PublishBean> getPublish(@Field("uid") String uid, @Field("content") String content, @Field("token") String token);
+    Observable<PublishBean> getPublishJoke(@Field("uid") String uid,@Field("content") String content,@Field("token") String token);
+
+    //广告接口
+    @GET("quarter/getAd")
+    Observable<AdBean> getAd();
+
+    //关注端口
+    @POST("quarter/follow")
+    @FormUrlEncoded
+    Observable<FollowBean> getFollow(@Field("uid") String uid, @Field("followId") String content, @Field("token") String token);
+
+
 
 
 }

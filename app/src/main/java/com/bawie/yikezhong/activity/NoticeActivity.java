@@ -18,9 +18,13 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_notice);
+        //手动隐藏标题
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
+
 
         initView();
-
 
         //点击事件
        tz_back.setOnClickListener(this);

@@ -18,9 +18,12 @@ public class ZuoPinActivity extends AppCompatActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_zuo_pin);
+        //手动隐藏标题
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
 
         initView();
-
 
         //点击事件
         zp_back.setOnClickListener(this);

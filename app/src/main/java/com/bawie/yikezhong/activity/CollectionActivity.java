@@ -18,9 +18,12 @@ public class CollectionActivity extends AppCompatActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_collection);
+        //手动隐藏标题
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
+
         initView();
-
-
         //点击事件
         cc_back.setOnClickListener(this);
 

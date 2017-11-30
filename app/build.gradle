@@ -65,4 +65,8 @@ dependencies {
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'jp.wasabeef:glide-transformations:1.0.6'
 
+    /*添加图片*/
+    compile 'com.yancy.imageselector:imageselector:1.3.3'
+
+
 }

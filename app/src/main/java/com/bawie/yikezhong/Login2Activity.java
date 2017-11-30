@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.bawie.yikezhong.base.BaseActivity;
 import com.bawie.yikezhong.base.BasePresenter;
+import com.bawie.yikezhong.base.GlideCircleTransform;
 import com.bawie.yikezhong.bean.LoginBean;
 import com.bawie.yikezhong.presenter.UserLoginPresenter;
 import com.bawie.yikezhong.view.LoginView;
@@ -49,6 +50,10 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login2);
+        //手动隐藏标题
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
 
         sp = getSharedPreferences("sp", MODE_PRIVATE);
 
@@ -108,15 +113,16 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
 
             case R.id.login2_btn_login:
                 //登录按钮
+               sp.edit().putBoolean("isfirst",false).commit();
                 String pass = login2_et_phone.getText().toString();
                 String user = login2_et_pwd.getText().toString();
                 if(TextUtils.isEmpty(user)||TextUtils.isEmpty(pass)){
                     Toast.makeText(this, "密码或者用户名为空", Toast.LENGTH_SHORT).show();
                     return;
                 }
-                sp.edit().putBoolean("isfirst",false).commit();
-                userLoginPresenter.getUserLoginData(login2_et_phone.getText().toString(), login2_et_pwd.getText().toString());
 
+
+                userLoginPresenter.getUserLoginData(login2_et_phone.getText().toString(), login2_et_pwd.getText().toString());
                 break;
 
             case R.id.login2_tv_pwd:
@@ -134,7 +140,6 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
                 //第一个参数为启动时动画效果，第二个参数为退出时动画效果
                 overridePendingTransition(android.R.anim.slide_in_left,android.R.anim.slide_out_right);
                 break;
-
         }
 
     }
@@ -147,7 +152,6 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
 
     @Override
     public void failure() {
-
         Toast.makeText(this, "失败了", Toast.LENGTH_SHORT).show();
 
     }
@@ -166,6 +170,7 @@ public class Login2Activity extends BaseActivity implements LoginView,View.OnCli
         String token = loginBean.data.token;
 
         //保存在SharedPreferences里面
+
         SharedPreferences.Editor edit = sp.edit();
         edit.putBoolean("isfirst",true);
         edit.putString("uid",uid);

@@ -7,10 +7,14 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bawie.yikezhong.R;
 import com.bawie.yikezhong.bean.UserJoker;
@@ -18,6 +22,7 @@ import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -40,7 +45,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
     private ObjectAnimator fanimator2;
     private ObjectAnimator animator3;
     private ObjectAnimator fanimator3;
-
+    private MyViewHolder holder;
 
 
     public MyFg2Adapter(Context context, List<UserJoker.DataBean> data) {
@@ -56,7 +61,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = View.inflate(context, R.layout.rv_list_item, null);
-        MyViewHolder holder = new MyViewHolder(view);
+        holder = new MyViewHolder(view);
         view.setOnClickListener(this);
         return holder;
     }
@@ -64,9 +69,29 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
     @Override
     public void onBindViewHolder(final MyViewHolder holder, int position) {
 
-        holder.rv_list_duanzi.setText(data.get(position).content);
+
         holder.rv_list_nicheng.setText(data.get(position).user.nickname);
         holder.rv_list_date.setText(data.get(position).createTime);
+        holder.rv_list_duanzi.setText(data.get(position).content);
+
+        if(data.get(position).imgUrls != null){
+            //============嵌套的Recyclerview
+            String string = data.get(position).imgUrls.toString();
+            System.out.println("string = " + string);
+            String[] split = string.split("\\|");
+            List<String> imgUrls = new ArrayList<>();
+            for (int i = 0; i < split.length; i++) {
+                imgUrls.add(split[i]);
+                System.out.println("i = " + split[i]);
+            }
+
+            GridLayoutManager layoutManager = new GridLayoutManager(context,3);
+            holder.rv_list_rv.setLayoutManager(layoutManager);
+
+            MyFg2sAdapter myFg2sAdapter = new MyFg2sAdapter(context,imgUrls);
+            holder.rv_list_rv.setAdapter(myFg2sAdapter);
+            //==============
+        }
 
         //将position保存在itemview的Tag中，以便点击时获取
         holder.itemView.setTag(position);
@@ -82,19 +107,26 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
             }
         });
 
+        //==========图片动画集合
+        initIMG();
+
+    }
+
+    //图片动画集合
+    private void initIMG() {
         //===============
-        animator = ObjectAnimator.ofFloat(holder.rv_list_icon_packup, "rotation", 0f, 180f);
-        animator1 = ObjectAnimator.ofFloat(holder.rv_list_copylink1, "translationX", 0f,-80f);
-        animator2 = ObjectAnimator.ofFloat(holder.rv_list_shiled1, "translationX", 0f,-160f);
-        animator3 = ObjectAnimator.ofFloat(holder.rv_list_icon_report1, "translationX", 0f,-240f);
+        animator = ObjectAnimator.ofFloat(holder.rv_list_jia, "rotation", 0f, 180f);
+        animator1 = ObjectAnimator.ofFloat(holder.rv_list_collection, "translationX", 0f,-80f);
+        animator2 = ObjectAnimator.ofFloat(holder.rv_list_share, "translationX", 0f,-160f);
+        animator3 = ObjectAnimator.ofFloat(holder.rv_list_news, "translationX", 0f,-240f);
 
         //----缩回时的动画
-        fanimator = ObjectAnimator.ofFloat(holder.rv_list_icon_packup, "rotation", 0f, -180f);
-        fanimator1 = ObjectAnimator.ofFloat(holder.rv_list_copylink1, "translationX", -80f,0f);
-        fanimator2 = ObjectAnimator.ofFloat(holder.rv_list_shiled1, "translationX", -160f,0f);
-        fanimator3 = ObjectAnimator.ofFloat(holder.rv_list_icon_report1, "translationX", -240f,0f);
+        fanimator = ObjectAnimator.ofFloat(holder.rv_list_jian, "rotation", 0f, -180f);
+        fanimator1 = ObjectAnimator.ofFloat(holder.rv_list_collection, "translationX", -80f,0f);
+        fanimator2 = ObjectAnimator.ofFloat(holder.rv_list_share, "translationX", -160f,0f);
+        fanimator3 = ObjectAnimator.ofFloat(holder.rv_list_news, "translationX", -240f,0f);
 
-       //-------
+        //-------
 
         //给伸出动画设置监听
         animator.addListener(new Animator.AnimatorListener() {
@@ -105,7 +137,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                holder.rv_list_copylink1.setImageResource(R.mipmap.icon_packup);//动画结束改变图片
+                holder.rv_list_jia.setImageResource(R.mipmap.rv_list_jian);//动画结束改变图片
 
             }
 
@@ -129,7 +161,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
 
             @Override
             public void onAnimationEnd(Animator animator) {
-                holder.rv_list_copylink1.setImageResource(R.mipmap.icon_packup);//改变图片
+                holder.rv_list_jia.setImageResource(R.mipmap.rv_list_jia);//改变图片
             }
 
             @Override
@@ -144,7 +176,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
         });
 
 
-        holder.rv_list_icon_open.setOnClickListener(new View.OnClickListener() {//图片的点击事件
+        holder.rv_list_jia.setOnClickListener(new View.OnClickListener() {//图片的点击事件
             @Override
             public void onClick(View view) {
                 a++;
@@ -181,16 +213,19 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
         }
     }
 
-    class MyViewHolder extends XRecyclerView.ViewHolder{
+    class MyViewHolder extends XRecyclerView.ViewHolder implements View.OnClickListener {
 
         private final ImageView rv_list_touxiang;//头像
-        private final TextView rv_list_date,rv_list_duanzi;//日期,段子
+        private final TextView rv_list_date;//日期
         private final TextView rv_list_nicheng;//昵称
-        private final ImageView rv_list_copylink1;
-        private final ImageView rv_list_icon_open;
-        private final ImageView rv_list_icon_packup;
-        private final ImageView rv_list_icon_report1;
-        private final ImageView rv_list_shiled1;
+        private final ImageView rv_list_jia;
+        private final RelativeLayout rv_list_collection;
+        private final ImageView rv_list_jian;
+        private final RelativeLayout rv_list_share;
+        private final RelativeLayout rv_list_news;
+        //RecyclerView 的多布局
+        private final RecyclerView rv_list_rv;
+        private final TextView rv_list_duanzi;
 
 
         public MyViewHolder(View itemView) {
@@ -198,15 +233,47 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
             rv_list_touxiang = itemView.findViewById(R.id.rv_list_touxiang);
             rv_list_date = itemView.findViewById(R.id.rv_list_date);
             rv_list_nicheng = itemView.findViewById(R.id.rv_list_nicheng);
+            rv_list_rv = itemView.findViewById(R.id.rv_list_rv);
+            //文字段子
             rv_list_duanzi = itemView.findViewById(R.id.rv_list_duanzi);
 
-            //四个图片
-            rv_list_copylink1 = itemView.findViewById(R.id.rv_list_copylink1);
-            rv_list_icon_open = itemView.findViewById(R.id.rv_list_icon_open);
-            rv_list_icon_packup = itemView.findViewById(R.id.rv_list_icon_packup);
-            rv_list_icon_report1 = itemView.findViewById(R.id.rv_list_icon_report1);
-            rv_list_shiled1 = itemView.findViewById(R.id.rv_list_shiled1);
+            //5个图片
+            rv_list_jia = itemView.findViewById(R.id.rv_list_jia);//加
+            rv_list_collection = itemView.findViewById(R.id.rv_list_collection);//收藏
+            rv_list_jian = itemView.findViewById(R.id.rv_list_jian);//减
+            rv_list_share = itemView.findViewById(R.id.rv_list_share);//分享
+            rv_list_news = itemView.findViewById(R.id.rv_list_news);//消息
 
+            //消息
+            rv_list_news.setOnClickListener(this);
+            //分享
+            rv_list_share.setOnClickListener(this);
+            //点赞
+            rv_list_collection.setOnClickListener(this);
+            //点击头像
+            rv_list_touxiang.setOnClickListener(this);
+
+
+        }
+
+        @Override
+        public void onClick(View view) {
+            switch (view.getId()){
+                case R.id.rv_list_news:
+                    Toast.makeText(context, "要发布消息吗", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.rv_list_share:
+                    Toast.makeText(context, "要分享段子吗", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.rv_list_collection:
+                    Toast.makeText(context, "要收藏段子吗", Toast.LENGTH_SHORT).show();
+                    break;
+                case R.id.rv_list_touxiang://段子手们的头像
+                    Toast.makeText(context, "点击头像了", Toast.LENGTH_SHORT).show();
+
+
+                    break;
+            }
 
         }
     }

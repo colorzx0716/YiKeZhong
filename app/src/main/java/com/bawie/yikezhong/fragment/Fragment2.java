@@ -32,8 +32,6 @@ public class Fragment2 extends Fragment implements UserJokerView{
     private String page = "1";
     private int p = 1;
 
-
-
     private UserJokerPresenter userJokerPresenter;
     private MyFg2Adapter myFg2Adapter;
     private LinearLayoutManager linearLayoutManager;
@@ -73,6 +71,7 @@ public class Fragment2 extends Fragment implements UserJokerView{
 
     private void initView() {
         fg2_rv = view.findViewById(R.id.fg2_rv);
+
 
 
     }

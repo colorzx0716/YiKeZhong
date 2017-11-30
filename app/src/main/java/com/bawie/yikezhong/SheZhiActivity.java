@@ -7,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.bawie.yikezhong.base.GlideCacheUtil;
 
 /**
  *
@@ -24,17 +27,35 @@ public class SheZhiActivity extends AppCompatActivity implements View.OnClickLis
     private TextView she_tv_yijian;
     private TextView she_tv_guanyu;
     private TextView she_tv_huancun;
+    private TextView she_tv_hcnum;
+    private GlideCacheUtil glideCacheUtil;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_she_zhi);
+        //手动隐藏标题
+        if(getSupportActionBar() != null){
+            getSupportActionBar().hide();
+        }
 
         initView();
+        initData();
+
+        glideCacheUtil = new GlideCacheUtil();
 
         //点击事件总和
         shezhi_back.setOnClickListener(this);
         shezhi_login_clear.setOnClickListener(this);
+        she_tv_huancun.setOnClickListener(this);//清除缓存
+    }
+
+    private void initData() {
+
+        //获取Glide造成的缓存大小
+        she_tv_hcnum.setText(glideCacheUtil.getInstance().getCacheSize(this));
+
+
     }
 
     private void initView() {
@@ -48,6 +69,8 @@ public class SheZhiActivity extends AppCompatActivity implements View.OnClickLis
         she_tv_yijian = findViewById(R.id.she_tv_yijian);
         she_tv_guanyu = findViewById(R.id.she_tv_guanyu);
         she_tv_huancun = findViewById(R.id.she_tv_huancun);
+        //缓存的数量
+        she_tv_hcnum = findViewById(R.id.she_tv_hcnum);
 
 
     }
@@ -68,9 +91,13 @@ public class SheZhiActivity extends AppCompatActivity implements View.OnClickLis
                 edit.commit();
 
                 break;
+
+            case R.id.she_tv_huancun://清除缓存
+                glideCacheUtil.clearImageDiskCache(this);
+                Toast.makeText(this, "清除缓存", Toast.LENGTH_SHORT).show();
+                she_tv_hcnum.setText("");
+                break;
         }
-
-
 
     }
 }

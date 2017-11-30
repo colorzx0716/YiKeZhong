@@ -22,7 +22,7 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginLeft="@dimen/x44"
-            android:layout_marginStart="@dimen/y44"
+            android:layout_marginStart="@dimen/x44"
             android:padding="5px"
             android:src="@drawable/raw_1500885944" />
 
@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/y2"
             android:layout_marginLeft="@dimen/x24"
-            android:layout_marginRight="@dimen/y24"
+            android:layout_marginRight="@dimen/x24"
             android:background="#C4C4C4"></View>
 
         <LinearLayout

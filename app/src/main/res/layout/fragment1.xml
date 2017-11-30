@@ -7,7 +7,7 @@
     <LinearLayout
         android:background="#ffffff"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/x70">
+        android:layout_height="@dimen/y70">
 
         <LinearLayout
             android:id="@+id/fg1_lt1"
@@ -26,7 +26,7 @@
             <View
                 android:id="@+id/fg1_v_remen"
                 android:layout_width="@dimen/x160"
-                android:layout_height="@dimen/x15"/>
+                android:layout_height="@dimen/y15"/>
 
         </LinearLayout>
 
@@ -47,7 +47,7 @@
             <View
                 android:id="@+id/fg1_v_guanzhu"
                 android:layout_width="@dimen/x160"
-                android:layout_height="@dimen/x15"/>
+                android:layout_height="@dimen/y15"/>
         </LinearLayout>
 
     </LinearLayout>
@@ -55,7 +55,7 @@
     <FrameLayout
         android:id="@+id/fg1_fl"
         android:background="#009988"
-        android:layout_marginTop="@dimen/x70"
+        android:layout_marginTop="@dimen/y70"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>
 

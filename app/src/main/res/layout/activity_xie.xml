@@ -35,7 +35,7 @@
     <RelativeLayout
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_cz_yuan"
-        android:layout_marginTop="@dimen/x300"
+        android:layout_marginTop="@dimen/y300"
         android:layout_width="@dimen/x150"
         android:layout_height="@dimen/y150">
         <ImageView
@@ -48,7 +48,7 @@
 
     <RelativeLayout
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="@dimen/x100"
+        android:layout_marginTop="@dimen/y100"
         android:layout_centerInParent="true"
         android:background="@drawable/bg_cz_yuan"
         android:layout_width="@dimen/x150"
