@@ -137,12 +137,12 @@ public class Fragment2 extends Fragment implements UserJokerView{
         });
 
         //条目点击事件效果非常完美
-        myFg2Adapter.setOnItemClickListener(new MyFg2Adapter.OnItemClickListener() {
+      /*  myFg2Adapter.setOnItemClickListener(new MyFg2Adapter.OnItemClickListener() {
             @Override
             public void onItemClick(View view, int position) {
                 Toast.makeText(getContext(), "点击了"+position, Toast.LENGTH_SHORT).show();
             }
-        });
+        });*/
 
     }
 

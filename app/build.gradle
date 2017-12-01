@@ -60,13 +60,20 @@ dependencies {
     implementation 'com.android.support:recyclerview-v7:26.1.0'
     implementation 'com.jcodecraeer:xrecyclerview:1.3.2'
 
-   /* Xbanner*/
+    /* Xbanner*/
     compile 'com.xhb:xbanner:1.2.2'
     compile 'com.nineoldandroids:library:2.4.0'
     compile 'jp.wasabeef:glide-transformations:1.0.6'
 
-    /*添加图片*/
+    /*上传图片*/
     compile 'com.yancy.imageselector:imageselector:1.3.3'
 
+
+    //3D地图so及jar
+    compile 'com.amap.api:3dmap:latest.integration'
+    //定位功能
+    compile 'com.amap.api:location:latest.integration'
+    //搜索功能
+    compile 'com.amap.api:search:latest.integration'
 
 }

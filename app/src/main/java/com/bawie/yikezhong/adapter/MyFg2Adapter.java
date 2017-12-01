@@ -9,6 +9,7 @@ import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -29,11 +30,13 @@ import java.util.List;
  * 段子页面的recyclerview的适配器
  */
 
-public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolder> implements View.OnClickListener {
+public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolder>/* implements View.OnClickListener*/ {
 
     private final Context context;
     private final List<UserJoker.DataBean> data;
     private OnItemClickListener onItemClickListener;
+
+    private LayoutInflater mLayoutInflater;
 
     //动画
     private int a=0;
@@ -49,6 +52,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
 
 
     public MyFg2Adapter(Context context, List<UserJoker.DataBean> data) {
+        mLayoutInflater = LayoutInflater.from(context);
         this.context = context;
         this.data = data;
 
@@ -60,15 +64,14 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
 
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = View.inflate(context, R.layout.rv_list_item, null);
-        holder = new MyViewHolder(view);
-        view.setOnClickListener(this);
+
+        holder = new MyViewHolder(mLayoutInflater.inflate(R.layout.rv_list_item, null));
+
         return holder;
     }
 
     @Override
-    public void onBindViewHolder(final MyViewHolder holder, int position) {
-
+    public void onBindViewHolder(final MyViewHolder holder, final int position) {
 
         holder.rv_list_nicheng.setText(data.get(position).user.nickname);
         holder.rv_list_date.setText(data.get(position).createTime);
@@ -94,7 +97,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
         }
 
         //将position保存在itemview的Tag中，以便点击时获取
-        holder.itemView.setTag(position);
+        //holder.itemView.setTag(position);
 
         //第一次
         Glide.with(context).load(data.get(position).user.icon).asBitmap().centerCrop().into(new BitmapImageViewTarget(holder.rv_list_touxiang){
@@ -109,6 +112,16 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
 
         //==========图片动画集合
         initIMG();
+
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+
+            public void onClick(View view) {
+                Toast.makeText(context, "水波纹~~"+position, Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
 
     }
 
@@ -206,12 +219,12 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
     }
 
     //自动生成的点击方法
-    @Override
+   /* @Override
     public void onClick(View view) {
         if(onItemClickListener != null){
             onItemClickListener.onItemClick(view, (int) view.getTag());
         }
-    }
+    }*/
 
     class MyViewHolder extends XRecyclerView.ViewHolder implements View.OnClickListener {
 
@@ -236,7 +249,6 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
             rv_list_rv = itemView.findViewById(R.id.rv_list_rv);
             //文字段子
             rv_list_duanzi = itemView.findViewById(R.id.rv_list_duanzi);
-
             //5个图片
             rv_list_jia = itemView.findViewById(R.id.rv_list_jia);//加
             rv_list_collection = itemView.findViewById(R.id.rv_list_collection);//收藏
@@ -252,7 +264,6 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
             rv_list_collection.setOnClickListener(this);
             //点击头像
             rv_list_touxiang.setOnClickListener(this);
-
 
         }
 
@@ -279,7 +290,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
     }
 
     //模拟ListView的条目点击事件
-    public static interface OnItemClickListener{
+    public  interface OnItemClickListener{
         void onItemClick(View view,int position);
     }
 
