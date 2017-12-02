@@ -7,9 +7,7 @@ package com.bawie.yikezhong.bean;
  */
 
 
-
 public class LoginBean {
-
 
     public String msg;
     public String code;

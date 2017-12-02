@@ -4,6 +4,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
@@ -18,7 +19,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bawie.yikezhong.R;
+import com.bawie.yikezhong.bean.PraiseBean;
 import com.bawie.yikezhong.bean.UserJoker;
+import com.bawie.yikezhong.presenter.PraisePresenter;
+import com.bawie.yikezhong.view.PraiseView;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.target.BitmapImageViewTarget;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -30,11 +34,10 @@ import java.util.List;
  * 段子页面的recyclerview的适配器
  */
 
-public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolder>/* implements View.OnClickListener*/ {
+public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolder> implements PraiseView/* implements View.OnClickListener*/ {
 
     private final Context context;
     private final List<UserJoker.DataBean> data;
-    private OnItemClickListener onItemClickListener;
 
     private LayoutInflater mLayoutInflater;
 
@@ -49,6 +52,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
     private ObjectAnimator animator3;
     private ObjectAnimator fanimator3;
     private MyViewHolder holder;
+    private PraisePresenter praisePresenter;
 
 
     public MyFg2Adapter(Context context, List<UserJoker.DataBean> data) {
@@ -58,12 +62,14 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
 
     }
 
-    public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
+  /*  public void setOnItemClickListener(OnItemClickListener onItemClickListener) {
         this.onItemClickListener = onItemClickListener;
     }
-
+*/
     @Override
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+
+        praisePresenter = new PraisePresenter(this);
 
         holder = new MyViewHolder(mLayoutInflater.inflate(R.layout.rv_list_item, null));
 
@@ -93,6 +99,7 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
 
             MyFg2sAdapter myFg2sAdapter = new MyFg2sAdapter(context,imgUrls);
             holder.rv_list_rv.setAdapter(myFg2sAdapter);
+
             //==============
         }
 
@@ -120,7 +127,6 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
                 Toast.makeText(context, "水波纹~~"+position, Toast.LENGTH_SHORT).show();
             }
         });
-
 
 
     }
@@ -218,6 +224,27 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
         return data.size();
     }
 
+    @Override
+    public void success() {
+
+    }
+
+    @Override
+    public void failure() {
+
+    }
+
+    @Override
+    public void praiseSuccess(PraiseBean praiseBean) {
+        Toast.makeText(context, "成功点赞！", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void praiseFailure(String e) {
+        System.out.println("MyFg2Adapter====== " + e);
+
+    }
+
     //自动生成的点击方法
    /* @Override
     public void onClick(View view) {
@@ -277,11 +304,20 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
                     Toast.makeText(context, "要分享段子吗", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.rv_list_collection:
-                    Toast.makeText(context, "要收藏段子吗", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(context, "要点赞段子吗", Toast.LENGTH_SHORT).show();
+
+                    SharedPreferences sp = context.getSharedPreferences("sp", Context.MODE_PRIVATE);
+                    String uid = sp.getString("uid", "146");
+
+                    for (int i = 0; i < data.size(); i++) {
+                        int jid = data.get(i).jid;
+                        praisePresenter.getPraiseData(uid, String.valueOf(jid));
+                    }
+
+
                     break;
                 case R.id.rv_list_touxiang://段子手们的头像
                     Toast.makeText(context, "点击头像了", Toast.LENGTH_SHORT).show();
-
 
                     break;
             }
@@ -290,9 +326,9 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
     }
 
     //模拟ListView的条目点击事件
-    public  interface OnItemClickListener{
+   /* public interface OnItemClickListener{
         void onItemClick(View view,int position);
-    }
+    }*/
 
 
 }

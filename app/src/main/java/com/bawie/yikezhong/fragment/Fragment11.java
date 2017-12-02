@@ -14,6 +14,7 @@ import com.bawie.yikezhong.bean.AdBean;
 import com.bawie.yikezhong.presenter.AdPresenter;
 import com.bawie.yikezhong.view.AdView;
 import com.bumptech.glide.Glide;
+import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
 
@@ -28,6 +29,7 @@ public class Fragment11 extends Fragment implements AdView {
     private List<String> imgs;
     private List<String> titles;
     private AdPresenter adPresenter;
+    private XRecyclerView fg11_xrv;
 
     @Nullable
     @Override
@@ -60,8 +62,10 @@ public class Fragment11 extends Fragment implements AdView {
     private void initView() {
         //Xbanner控件
         fg11_xbanner = view.findViewById(R.id.fg11_xbanner);
-    }
+        //XRecyclerview控件
+        fg11_xrv = view.findViewById(R.id.fg11_xrv);
 
+    }
 
     @Override
     public void onResume() {

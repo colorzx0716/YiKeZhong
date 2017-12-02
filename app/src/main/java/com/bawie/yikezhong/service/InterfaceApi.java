@@ -2,6 +2,7 @@ package com.bawie.yikezhong.service;
 
 import com.bawie.yikezhong.bean.AdBean;
 import com.bawie.yikezhong.bean.FollowBean;
+import com.bawie.yikezhong.bean.PraiseBean;
 import com.bawie.yikezhong.bean.PublishBean;
 import com.bawie.yikezhong.bean.UserJoker;
 
@@ -52,6 +53,12 @@ public interface InterfaceApi {
     @FormUrlEncoded
     Observable<FollowBean> getFollow(@Field("uid") String uid, @Field("followId") String content, @Field("token") String token);
 
+
+
+    //段子点赞
+    @POST("quarter/jokePraise")
+    @FormUrlEncoded
+    Observable<PraiseBean> getPraise(@Field("uid") String uid, @Field("jid") String jid);
 
 
 

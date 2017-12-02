@@ -101,7 +101,6 @@ public class Fragment2 extends Fragment implements UserJokerView{
        /* myFg2Adapter = new MyFg2Adapter(getActivity(),value.data);
         fg2_rv.setAdapter(myFg2Adapter);*/
 
-
         //加载更多的监听器
         list.addAll(value.data);
 
@@ -160,9 +159,5 @@ public class Fragment2 extends Fragment implements UserJokerView{
         myFg2Adapter.notifyDataSetChanged();//刷新
         layout_swipe_refresh.setRefreshing(false);
     }*/
-
-
-
-
 
 }
