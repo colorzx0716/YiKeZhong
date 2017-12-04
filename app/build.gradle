@@ -76,4 +76,6 @@ dependencies {
     //搜索功能
     compile 'com.amap.api:search:latest.integration'
 
+    compile 'fm.jiecao:jiecaovideoplayer:4.8.3'
+
 }

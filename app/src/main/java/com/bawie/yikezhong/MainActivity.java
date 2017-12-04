@@ -23,6 +23,8 @@ import com.kson.slidingmenu.SlidingMenu;
 
 import java.util.List;
 
+import fm.jiecao.jcvideoplayer_lib.JCVideoPlayer;
+
 public class MainActivity extends BaseActivity implements View.OnClickListener{
 
     private ImageView main_touxiang;
@@ -173,8 +175,22 @@ public class MainActivity extends BaseActivity implements View.OnClickListener{
                 main_tv_tuijian.setTextColor(Color.parseColor("#999999"));
 
                 break;
-
         }
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        if (JCVideoPlayer.backPress()) {
+            return;
+        }
+        super.onBackPressed();
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        JCVideoPlayer.releaseAllVideos();
     }
 
 

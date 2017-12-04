@@ -1,8 +1,11 @@
 package com.bawie.yikezhong.fragment;
 
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,9 +13,13 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.bawie.yikezhong.R;
+import com.bawie.yikezhong.adapter.MyFg11Adapter;
 import com.bawie.yikezhong.bean.AdBean;
+import com.bawie.yikezhong.bean.VideosBean;
 import com.bawie.yikezhong.presenter.AdPresenter;
+import com.bawie.yikezhong.presenter.VideosPresenter;
 import com.bawie.yikezhong.view.AdView;
+import com.bawie.yikezhong.view.VideosView;
 import com.bumptech.glide.Glide;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.stx.xhb.xbanner.XBanner;
@@ -22,7 +29,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class Fragment11 extends Fragment implements AdView {
+public class Fragment11 extends Fragment implements AdView, VideosView {
 
     private View view;
     private XBanner fg11_xbanner;
@@ -30,6 +37,11 @@ public class Fragment11 extends Fragment implements AdView {
     private List<String> titles;
     private AdPresenter adPresenter;
     private XRecyclerView fg11_xrv;
+    private VideosPresenter videosPresenter;
+
+
+    private String page = "1";
+    private SharedPreferences sp;
 
     @Nullable
     @Override
@@ -44,6 +56,9 @@ public class Fragment11 extends Fragment implements AdView {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
+        sp = getActivity().getSharedPreferences("sp", Context.MODE_PRIVATE);
+
+
         initView();
         initData();
 
@@ -55,6 +70,11 @@ public class Fragment11 extends Fragment implements AdView {
 
         adPresenter = new AdPresenter(this);
         adPresenter.getAdData();
+
+        String uid = sp.getString("uid", "146");
+        videosPresenter = new VideosPresenter(this);
+        videosPresenter.getVideosModel(uid,page);
+
 
     }
 
@@ -118,16 +138,27 @@ public class Fragment11 extends Fragment implements AdView {
         // 设置XBanner页面切换的时间，即动画时长
         fg11_xbanner.setPageChangeDuration(2000);
 
-
-
-
-
     }
 
     @Override
     public void AdFailue(String e) {
         Toast.makeText(getContext(), "失败", Toast.LENGTH_SHORT).show();
 
+
+    }
+
+    @Override
+    public void videosSuccess(List<VideosBean.DataBean> data) {
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+
+        fg11_xrv.setLayoutManager(linearLayoutManager);
+        MyFg11Adapter myFg11Adapter = new MyFg11Adapter(getActivity(),data);
+        fg11_xrv.setAdapter(myFg11Adapter);
+    }
+
+    @Override
+    public void videosFailure(String e) {
 
     }
 }

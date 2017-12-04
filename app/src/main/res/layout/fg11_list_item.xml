@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="wrap_content">
+
+
+    <RelativeLayout
+        android:id="@+id/fg11_rl"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y150">
+
+        <ImageView
+            android:scaleType="fitXY"
+            android:id="@+id/fg11_list_touxiang"
+            android:src="@mipmap/touxiang"
+            android:layout_width="@dimen/x150"
+            android:layout_height="@dimen/y150" />
+
+        <RelativeLayout
+            android:id="@+id/fg11_list_rl"
+            android:layout_marginLeft="@dimen/x20"
+            android:layout_toRightOf="@+id/fg11_list_touxiang"
+            android:layout_width="wrap_content"
+            android:layout_height="@dimen/y150">
+
+            <TextView
+                android:textSize="20sp"
+                android:textColor="#ff6655"
+                android:id="@+id/fg11_list_nicheng"
+                android:text="发布人昵称"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_below="@+id/fg11_list_nicheng"
+                android:id="@+id/fg11_list_date"
+                android:text="日期"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/fg11_list_des"
+        android:layout_below="@+id/fg11_rl"
+        android:text="描述"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+      android:layout_below="@+id/fg11_list_des"
+        android:id="@+id/fg11_player"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y320" />
+
+</RelativeLayout>

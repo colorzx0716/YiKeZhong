@@ -111,9 +111,9 @@ public class DuanZiActivity extends BaseActivity implements View.OnClickListener
                 String token = sp.getString("token", "929A310F425923598C7F3495BCAAA278");
 
                 String content = dz_et_content.getText().toString();
-                System.out.println("写的内容=======" + content+"=====路径"+path);
 
                 publicPresenter.getPublishJokeData(uid,content,token);
+                System.out.println("发表的段子 = " + content);
 
                 finish();
                 break;
@@ -160,10 +160,8 @@ public class DuanZiActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void failure() {
-        System.out.println(" failure失败 ");
+        System.out.println(" failure彻底========失败 ");
     }
-
-
 
 
     @Override
@@ -186,12 +184,12 @@ public class DuanZiActivity extends BaseActivity implements View.OnClickListener
 
     @Override
     public void userloginSuccess(PublishBean publishBean) {
-        System.out.println("成功了 = " + publishBean);
+        System.out.println("发表段子成功了 ====== " + publishBean);
     }
 
     @Override
     public void userloginFailue(String e) {
-        System.out.println("失败了 = " + e);
+        System.out.println("发表段子失败了 = " + e);
 
     }
 }

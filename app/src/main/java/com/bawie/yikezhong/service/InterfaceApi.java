@@ -5,6 +5,7 @@ import com.bawie.yikezhong.bean.FollowBean;
 import com.bawie.yikezhong.bean.PraiseBean;
 import com.bawie.yikezhong.bean.PublishBean;
 import com.bawie.yikezhong.bean.UserJoker;
+import com.bawie.yikezhong.bean.VideosBean;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
@@ -54,11 +55,18 @@ public interface InterfaceApi {
     Observable<FollowBean> getFollow(@Field("uid") String uid, @Field("followId") String content, @Field("token") String token);
 
 
-
     //段子点赞
     @POST("quarter/jokePraise")
     @FormUrlEncoded
     Observable<PraiseBean> getPraise(@Field("uid") String uid, @Field("jid") String jid);
+
+
+    //获取视频列表
+    @POST("quarter/getVideos")
+    @FormUrlEncoded
+    Observable<VideosBean> getVideos(@Field("uid") String uid, @Field("page") String page);
+
+
 
 
 

@@ -304,7 +304,6 @@ public class MyFg2Adapter extends XRecyclerView.Adapter<MyFg2Adapter.MyViewHolde
                     Toast.makeText(context, "要分享段子吗", Toast.LENGTH_SHORT).show();
                     break;
                 case R.id.rv_list_collection:
-                    Toast.makeText(context, "要点赞段子吗", Toast.LENGTH_SHORT).show();
 
                     SharedPreferences sp = context.getSharedPreferences("sp", Context.MODE_PRIVATE);
                     String uid = sp.getString("uid", "146");
