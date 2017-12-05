@@ -59,16 +59,13 @@ public class Fragment11 extends Fragment implements AdView, VideosView {
 
         sp = getActivity().getSharedPreferences("sp", Context.MODE_PRIVATE);
 
-
         initView();
         initData();
-
 
     }
 
     //初始化
     private void initData() {
-
         adPresenter = new AdPresenter(this);
         adPresenter.getAdData();
 

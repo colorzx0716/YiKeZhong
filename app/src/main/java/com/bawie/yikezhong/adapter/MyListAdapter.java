@@ -14,7 +14,7 @@ import java.util.List;
 
 
 /**
- * Created by 张肖肖 on 2017/11/25.
+ *左侧的Adapter
  */
 
 public class MyListAdapter extends BaseAdapter {

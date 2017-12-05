@@ -54,7 +54,6 @@
 
     <FrameLayout
         android:id="@+id/fg3_fl"
-        android:background="#009988"
         android:layout_marginTop="@dimen/y70"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></FrameLayout>

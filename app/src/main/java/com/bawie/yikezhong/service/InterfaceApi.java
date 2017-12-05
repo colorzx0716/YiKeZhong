@@ -67,7 +67,4 @@ public interface InterfaceApi {
     Observable<VideosBean> getVideos(@Field("uid") String uid, @Field("page") String page);
 
 
-
-
-
 }

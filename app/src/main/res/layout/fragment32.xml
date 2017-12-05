@@ -4,6 +4,7 @@
 
     <com.jcodecraeer.xrecyclerview.XRecyclerView
         android:id="@+id/fg32_xrv"
+        android:background="#ff2233"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"></com.jcodecraeer.xrecyclerview.XRecyclerView>
 
