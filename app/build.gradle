@@ -4,18 +4,17 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.bawie.yikezhong"
-        minSdkVersion 15
+        minSdkVersion 14
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
+multiDexEnabled true
         manifestPlaceholders = [
                 GETUI_APP_ID    : "kGqq1dCIpA8bzDnet5GXh7",
                 GETUI_APP_KEY   : "pq8yl7GcjO64UWTPR6VE2A",
                 GETUI_APP_SECRET: "QSdjYKYPLT9JOQBtwfCmw3"
         ]
-
 
     }
     buildTypes {
@@ -36,6 +35,7 @@ repositories {
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
+    //noinspection GradleCompatible
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
     testImplementation 'junit:junit:4.12'
@@ -77,5 +77,22 @@ dependencies {
     compile 'com.amap.api:search:latest.integration'
 
     compile 'fm.jiecao:jiecaovideoplayer:4.8.3'
+
+    //添加Recyclerview头部的依赖
+    compile 'com.zhy:base-adapter:3.0.3'
+    compile 'com.zhy:base-rvadapter:3.0.3'
+
+//    //视频播放
+    compile 'com.dou361.ijkplayer:jjdxm-ijkplayer:1.0.6'
+////对应 ijkplayer 的  compile 'tv.danmaku.ijk.media:ijkplayer-armv5:0.6.0'
+    compile 'com.dou361.ijkplayer-armv5:jjdxm-ijkplayer-armv5:1.0.0'
+////对应 ijkplayer 的  compile 'tv.danmaku.ijk.media:ijkplayer-arm64:0.6.0'
+//    compile 'com.dou361.ijkplayer-arm64:jjdxm-ijkplayer-arm64:1.0.0'
+////对应 ijkplayer 的  compile 'tv.danmaku.ijk.media:ijkplayer-x86:0.6.0'
+//    compile 'com.dou361.ijkplayer-x86:jjdxm-ijkplayer-x86:1.0.0'
+////对应 ijkplayer 的  compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.0'
+//    compile 'com.dou361.ijkplayer-x86_64:jjdxm-ijkplayer-x86_64:1.0.0'
+
+
 
 }

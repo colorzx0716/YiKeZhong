@@ -24,6 +24,7 @@ import com.bumptech.glide.Glide;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
 import com.stx.xhb.xbanner.XBanner;
 import com.stx.xhb.xbanner.transformers.Transformer;
+import com.zhy.adapter.recyclerview.wrapper.HeaderAndFooterWrapper;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -75,13 +76,12 @@ public class Fragment11 extends Fragment implements AdView, VideosView {
         videosPresenter = new VideosPresenter(this);
         videosPresenter.getVideosModel(uid,page);
 
-
     }
 
     //初始化控件
     private void initView() {
         //Xbanner控件
-        fg11_xbanner = view.findViewById(R.id.fg11_xbanner);
+      fg11_xbanner = view.findViewById(R.id.fg11_xbanner);
         //XRecyclerview控件
         fg11_xrv = view.findViewById(R.id.fg11_xrv);
 
@@ -155,6 +155,15 @@ public class Fragment11 extends Fragment implements AdView, VideosView {
         fg11_xrv.setLayoutManager(linearLayoutManager);
         MyFg11Adapter myFg11Adapter = new MyFg11Adapter(getActivity(),data);
         fg11_xrv.setAdapter(myFg11Adapter);
+
+        //添加头部
+        HeaderAndFooterWrapper myHeaderAndFooterWrapper = new HeaderAndFooterWrapper(myFg11Adapter);
+        View view2 = View.inflate(getContext(), R.layout.head_item, null);
+
+        myHeaderAndFooterWrapper.addHeaderView(view2);
+        fg11_xrv.setAdapter(myHeaderAndFooterWrapper);
+        myHeaderAndFooterWrapper.notifyDataSetChanged();
+
     }
 
     @Override

@@ -48,10 +48,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
-    <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
+  <!--  <fm.jiecao.jcvideoplayer_lib.JCVideoPlayerStandard
       android:layout_below="@+id/fg11_list_des"
         android:id="@+id/fg11_player"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y320" />
+        android:layout_height="@dimen/y320" />-->
+
+    <RelativeLayout
+       android:layout_below="@+id/fg11_list_des"
+        android:id="@+id/fg11_list_player"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y400"/>
 
 </RelativeLayout>
