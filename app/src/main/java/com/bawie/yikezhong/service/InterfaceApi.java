@@ -64,7 +64,8 @@ public interface InterfaceApi {
     //获取视频列表
     @POST("quarter/getVideos")
     @FormUrlEncoded
-    Observable<VideosBean> getVideos(@Field("uid") String uid, @Field("page") String page);
+    Observable<VideosBean> getVideos(@Field("uid") String uid,@Field("type") String type, @Field("page") String page);
+
 
 
 }

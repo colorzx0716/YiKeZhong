@@ -23,7 +23,7 @@ import com.dou361.ijkplayer.widget.PlayerView;
 import java.util.List;
 
 /**
- * 视频中的附近
+ *
  */
 
 public class MyFg11Adapter extends RecyclerView.Adapter<MyFg11Adapter.MyFg11ViewHolder>{
@@ -124,7 +124,6 @@ public class MyFg11Adapter extends RecyclerView.Adapter<MyFg11Adapter.MyFg11View
             fg11_list_date = itemView.findViewById(R.id.fg11_list_date);
             fg11_list_des = itemView.findViewById(R.id.fg11_list_des);
         }
-
 
     }
 

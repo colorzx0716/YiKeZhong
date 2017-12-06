@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bawie.yikezhong.activity.DuanZiActivity;
+import com.bawie.yikezhong.activity.ShiPinActivity;
 
 public class XieActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -52,6 +53,9 @@ public class XieActivity extends AppCompatActivity implements View.OnClickListen
             case R.id.xie_iv_img2:
                 //点击了视频发表
                 Toast.makeText(this, "视频还没做呢！", Toast.LENGTH_SHORT).show();
+
+                Intent intent1 = new Intent(XieActivity.this,ShiPinActivity.class);
+                startActivity(intent1);
 
                 break;
 

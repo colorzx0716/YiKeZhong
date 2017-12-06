@@ -14,12 +14,12 @@ import io.reactivex.schedulers.Schedulers;
 
 public class VideosModel {
 
-    public void getVideosModel(String uid, String page,final VideosMessage videosMessage){
+    public void getVideosModel(String uid, String type,String page,final VideosMessage videosMessage){
 
         new HUtils.Builder()
                 .addCallAdapterFactory()
                 .addConverterFactory()
-                .build().getMyQusetUtils().getVideos(uid,page)
+                .build().getMyQusetUtils().getVideos(uid,type,page)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Observer<VideosBean>() {

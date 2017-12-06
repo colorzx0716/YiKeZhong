@@ -9,7 +9,7 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-multiDexEnabled true
+        multiDexEnabled true
         manifestPlaceholders = [
                 GETUI_APP_ID    : "kGqq1dCIpA8bzDnet5GXh7",
                 GETUI_APP_KEY   : "pq8yl7GcjO64UWTPR6VE2A",
@@ -68,7 +68,6 @@ dependencies {
     /*上传图片*/
     compile 'com.yancy.imageselector:imageselector:1.3.3'
 
-
     //3D地图so及jar
     compile 'com.amap.api:3dmap:latest.integration'
     //定位功能
@@ -92,7 +91,6 @@ dependencies {
 //    compile 'com.dou361.ijkplayer-x86:jjdxm-ijkplayer-x86:1.0.0'
 ////对应 ijkplayer 的  compile 'tv.danmaku.ijk.media:ijkplayer-x86_64:0.6.0'
 //    compile 'com.dou361.ijkplayer-x86_64:jjdxm-ijkplayer-x86_64:1.0.0'
-
 
 
 }

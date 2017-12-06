@@ -72,8 +72,6 @@ public class Fragment2 extends Fragment implements UserJokerView{
     private void initView() {
         fg2_rv = view.findViewById(R.id.fg2_rv);
 
-
-
     }
 
     @Override

@@ -22,8 +22,8 @@ public class VideosPresenter extends BasePresenter{
 
     }
 
-    public void getVideosModel(String uid, String page){
-        videosModel.getVideosModel(uid, page, new VideosModel.VideosMessage() {
+    public void getVideosModel(String uid,String type, String page){
+        videosModel.getVideosModel(uid, type,page, new VideosModel.VideosMessage() {
 
             @Override
             public void videosSuccess(VideosBean videosBean) {
