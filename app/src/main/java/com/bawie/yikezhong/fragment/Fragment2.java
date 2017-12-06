@@ -41,7 +41,7 @@ public class Fragment2 extends Fragment implements UserJokerView{
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = View.inflate(getContext(), R.layout.fragment2, null);
+        view = View.inflate(getActivity(), R.layout.fragment2, null);
         return view;
     }
 
@@ -91,7 +91,7 @@ public class Fragment2 extends Fragment implements UserJokerView{
        String code = value.code;
        if(code.equals("2")){
            //超时就跳转到登录页面
-           Intent intent = new Intent(getContext(), Login2Activity.class);
+           Intent intent = new Intent(getActivity(), Login2Activity.class);
            getActivity().startActivity(intent);
            getActivity().finish();
        }
@@ -119,7 +119,7 @@ public class Fragment2 extends Fragment implements UserJokerView{
                 //下拉刷新
                 list.clear();
                 userJokerPresenter.getJokesData(page,"");
-                Toast.makeText(getContext(), "刷新", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "刷新", Toast.LENGTH_SHORT).show();
                 fg2_rv.refreshComplete();
             }
 
@@ -127,19 +127,11 @@ public class Fragment2 extends Fragment implements UserJokerView{
             public void onLoadMore() {
                 p++;
                 userJokerPresenter.getJokesData(p+"","");
-                Toast.makeText(getContext(), "加载", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "加载", Toast.LENGTH_SHORT).show();
                 fg2_rv.loadMoreComplete();
 
             }
         });
-
-        //条目点击事件效果非常完美
-      /*  myFg2Adapter.setOnItemClickListener(new MyFg2Adapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getContext(), "点击了"+position, Toast.LENGTH_SHORT).show();
-            }
-        });*/
 
     }
 
@@ -147,15 +139,5 @@ public class Fragment2 extends Fragment implements UserJokerView{
     public void getJokesFailure(String e) {
         System.out.println("===========失败========");
     }
-
-  /*  @Override
-    public void onRefresh() {
-        userJokerPresenter.getJokesData(page,"");
-        Toast.makeText(getContext(), "刷新了一下~", Toast.LENGTH_SHORT).show();
-
-        //数据重新加载完成后，提示数据发生改变，并且设置现在不在刷新
-        myFg2Adapter.notifyDataSetChanged();//刷新
-        layout_swipe_refresh.setRefreshing(false);
-    }*/
 
 }

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#A2defa"
+    tools:context="com.bawie.yikezhong.activity.PublishCoverActivity">
+    
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/x500"
+        android:scaleType="centerCrop"
+        android:src="@drawable/raw_1500974494"
+        android:id="@+id/imageView9" />
+
+    <ImageView
+        android:layout_width="@dimen/x230"
+        android:layout_height="@dimen/x230"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="30dp"
+        android:src="@mipmap/ic_launcher"
+        android:id="@+id/pc_iv_head" />
+
+    <Button
+        android:id="@+id/pc_btn_cover"
+        android:layout_width="@dimen/x230"
+        android:layout_height="@dimen/y50"
+        android:layout_alignBottom="@+id/pc_iv_head"
+        android:layout_alignLeft="@+id/pc_iv_head"
+        android:layout_alignStart="@+id/pc_iv_head"
+        android:background="#53C2F5"
+        android:text="设置封面"
+        android:textColor="#fff"
+        android:textSize="10sp" />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/y90"
+        android:layout_alignBottom="@+id/imageView9"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:background="#8DA1F0">
+        <TextView
+            android:id="@+id/tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="同步分享至------"
+            android:layout_centerVertical="true"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/x200" >
+
+            <ImageView
+                android:layout_width="@dimen/x50"
+                android:layout_height="@dimen/x50"
+                android:src="@drawable/raw_1500022714"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="QQ空间"
+                android:textColor="#fff"
+                android:textSize="10sp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="@dimen/x300" >
+
+            <ImageView
+                android:layout_width="@dimen/x50"
+                android:layout_height="@dimen/x50"
+                android:src="@drawable/weiixin"
+                android:layout_gravity="center"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="朋友圈"
+                android:textColor="#fff"
+                android:textSize="10sp"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <EditText
+        android:id="@+id/pc_et_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imageView9"
+        android:hint="点击输入视频简介"
+        android:background="@null"
+        android:padding="@dimen/x20"
+        android:textColor="#fff"/>
+
+    <Button
+        android:id="@+id/pc_btn_public"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="发布"
+        android:background="#29B6F6"
+        android:layout_alignParentBottom="true"
+        android:textColor="#fff"/>
+
+
+</RelativeLayout>

@@ -98,11 +98,13 @@
 
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="65a257d6070e91c61eaf35d2e71fa0e4"></meta-data>
+            android:value="65a257d6070e91c61eaf35d2e71fa0e4" />
 
         <service android:name="com.amap.api.location.APSService" />
 
-        <activity android:name=".activity.ShiPinActivity"></activity>
+        <activity android:name=".activity.ShiPinActivity" />
+        <activity android:name=".activity.YuLanActivity" />
+        <activity android:name=".activity.PublishCoverActivity"></activity>
     </application>
 
 </manifest>

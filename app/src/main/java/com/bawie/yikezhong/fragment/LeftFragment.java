@@ -64,7 +64,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener, User
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = View.inflate(getContext(), R.layout.left_item, null);
+        view = View.inflate(getActivity(), R.layout.left_item, null);
 
         return view;
     }
@@ -74,7 +74,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener, User
         super.onActivityCreated(savedInstanceState);
 
 
-        sp = getContext().getSharedPreferences("sp", Context.MODE_PRIVATE);
+        sp = getActivity().getSharedPreferences("sp", Context.MODE_PRIVATE);
         initList();//添加文字
         initView();//初始化
 
@@ -87,7 +87,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener, User
         left_shezhi.setOnClickListener(this);
 
         //listview的适配器
-        myListAdapter = new MyListAdapter(getContext(),tvs,imgs);
+        myListAdapter = new MyListAdapter(getActivity(),tvs,imgs);
         left_lv.setAdapter(myListAdapter);
 
 
@@ -97,28 +97,28 @@ public class LeftFragment extends Fragment implements View.OnClickListener, User
            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
              if(i == 0){
                  //我的关注
-                 Intent intent = new Intent(getContext(), WoGuanzhuActivity.class);
+                 Intent intent = new Intent(getActivity(), WoGuanzhuActivity.class);
                  startActivity(intent);
 
              }
 
                if(i == 1){
                    //我的收藏
-                   Intent intent = new Intent(getContext(),CollectionActivity.class);
+                   Intent intent = new Intent(getActivity(),CollectionActivity.class);
                    startActivity(intent);
 
                }
 
                if(i == 2){
                  //搜索好友
-                   Intent intent = new Intent(getContext(), SouSuoActivity.class);
+                   Intent intent = new Intent(getActivity(), SouSuoActivity.class);
                    startActivity(intent);
 
                }
 
                if(i == 3){
                   //消息通知
-                   Intent intent = new Intent(getContext(), NoticeActivity.class);
+                   Intent intent = new Intent(getActivity(), NoticeActivity.class);
                    startActivity(intent);
                }
 
@@ -182,21 +182,21 @@ public class LeftFragment extends Fragment implements View.OnClickListener, User
         switch (view.getId()){
             case R.id.left_touxiang:
                 //点击头像进入选择登录页面
-                Intent intent = new Intent(getContext(), LoginActivity.class);
+                Intent intent = new Intent(getActivity(), LoginActivity.class);
                 startActivity(intent);
 
                 break;
 
             case R.id.left_zuopin:
                 //点击我的作品
-                Intent intent2 = new Intent(getContext(), WoGuanzhuActivity.class);
+                Intent intent2 = new Intent(getActivity(), WoGuanzhuActivity.class);
                 startActivity(intent2);
 
                 break;
 
             case R.id.left_shezhi:
                 //设置
-                Intent intent1 = new Intent(getContext(), SheZhiActivity.class);
+                Intent intent1 = new Intent(getActivity(), SheZhiActivity.class);
                 startActivity(intent1);
                 break;
 
@@ -216,7 +216,7 @@ public class LeftFragment extends Fragment implements View.OnClickListener, User
 
     @Override
     public void userinfoSuccess(String string) {
-   Toast.makeText(getContext(), "====获取用户信息成功====", Toast.LENGTH_SHORT).show();
+   Toast.makeText(getActivity(), "====获取用户信息成功====", Toast.LENGTH_SHORT).show();
         String result = string.toString();
 
         Gson gson = new Gson();
@@ -251,6 +251,6 @@ public class LeftFragment extends Fragment implements View.OnClickListener, User
 
     @Override
     public void userinfoFailue(String string) {
-        Toast.makeText(getContext(), "失败", Toast.LENGTH_SHORT).show();
+        Toast.makeText(getActivity(), "失败", Toast.LENGTH_SHORT).show();
     }
 }

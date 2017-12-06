@@ -33,12 +33,10 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
 
     private static int flag;
 
-
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = View.inflate(getContext(), R.layout.fragment1, null);
-
         return view;
 
     }
@@ -66,11 +64,6 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
             showFragment(2);
         }
 
-
-
-
-
-        //getChildFragmentManager().beginTransaction().replace(R.id.fg1_fl,new Fragment11()).commit();
     }
 
     //初始化控件，点击事件
@@ -149,8 +142,6 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
                 fg1_v_remen.setBackgroundColor(Color.parseColor("#33ccff"));
                 showFragment(1);
 
-               // getChildFragmentManager().beginTransaction().replace(R.id.fg1_fl,new Fragment11()).commit();
-
                 break;
             case R.id.fg1_lt2:
                 flag = 1;
@@ -159,7 +150,6 @@ public class Fragment1 extends Fragment implements View.OnClickListener {
                 fg1_v_guanzhu.setBackgroundColor(Color.parseColor("#33ccff"));
                 showFragment(2);
 
-               // getChildFragmentManager().beginTransaction().replace(R.id.fg1_fl,new Fragment12()).commit();
                 break;
         }
     }

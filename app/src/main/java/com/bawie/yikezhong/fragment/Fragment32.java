@@ -1,7 +1,5 @@
 package com.bawie.yikezhong.fragment;
 
-import android.content.Context;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -37,8 +35,8 @@ public class Fragment32 extends Fragment{
 
         fg32_xrv = view.findViewById(R.id.fg32_xrv);
 
-        SharedPreferences sp = getActivity().getSharedPreferences("sp", Context.MODE_PRIVATE);
-        String uid = sp.getString("uid", "146");
+       /* SharedPreferences sp = getActivity().getSharedPreferences("sp", Context.MODE_PRIVATE);
+        String uid = sp.getString("uid", "146");*/
 
 
     }

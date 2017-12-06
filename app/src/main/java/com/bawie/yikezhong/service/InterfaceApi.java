@@ -4,15 +4,21 @@ import com.bawie.yikezhong.bean.AdBean;
 import com.bawie.yikezhong.bean.FollowBean;
 import com.bawie.yikezhong.bean.PraiseBean;
 import com.bawie.yikezhong.bean.PublishBean;
+import com.bawie.yikezhong.bean.PublishVideo;
 import com.bawie.yikezhong.bean.UserJoker;
 import com.bawie.yikezhong.bean.VideosBean;
 
+import java.util.List;
+
 import io.reactivex.Observable;
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 /**
@@ -66,6 +72,20 @@ public interface InterfaceApi {
     @FormUrlEncoded
     Observable<VideosBean> getVideos(@Field("uid") String uid,@Field("type") String type, @Field("page") String page);
 
+    //发布视频
+    @POST("quarter/publishVideo")
+    @Multipart
+    Observable<PublishVideo> getPublishVideo(@Part() List<MultipartBody.Part> videoFile);
+
+    //热门视频
+    @POST("quarter/getHotVideos")
+    @FormUrlEncoded
+    Observable<PublishVideo> getHotVideos(@Field("page") String page);
+
+    //附近视频
+    @POST("quarter/getNearVideos")
+    @FormUrlEncoded
+    Observable<PublishVideo> getNearVideos(@Field("page") String page,@Field("latitude") String latitude,@Field("longitude") String longitude);
 
 
 }

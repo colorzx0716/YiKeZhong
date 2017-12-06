@@ -6,24 +6,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#A2defa"
-    tools:context="com.bawie.yikezhong.activity.ShiPinActivity">
+    tools:context="com.bawie.yikezhong.activity.YuLanActivity">
 
-    <ImageView
-        android:id="@+id/sp_img_gif"
+    <RelativeLayout
+        android:id="@+id/yl_rl"
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y500"
-        android:scaleType="centerCrop"
-        android:src="@mipmap/ic_launcher" />
+        android:layout_height="@dimen/y450"
+        android:background="#000"/>
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="@dimen/y100"
+        android:layout_height="@dimen/y80"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true">
 
         <TextView
-            android:id="@+id/sp_tv_black"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="@dimen/x10"
@@ -39,28 +37,37 @@
             android:layout_height="match_parent"
             android:layout_centerHorizontal="true"
             android:gravity="center"
+            android:text="预览"
             android:textColor="#fff"
-            android:text="拍照"
             android:textSize="15sp" />
 
-        <ImageView
-            android:id="@+id/sp_iv_paizhao"
+        <TextView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
             android:layout_marginRight="@dimen/x10"
             android:padding="@dimen/x3"
-            android:src="@drawable/xiangji" />
+            android:text="存到本地"
+            android:gravity="center"
+            android:textColor="#fff"
+            android:textSize="15sp"/>
     </RelativeLayout>
 
-    <ImageView
-        android:id="@+id/sp_iv_luzhi"
-        android:layout_width="@dimen/x120"
-        android:layout_height="@dimen/x120"
+
+    <Button
+        android:id="@+id/yl_btn_xiayibu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="下一步"
+        android:textColor="#fff"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="@dimen/y100"
-        android:src="@drawable/pzan" />
+        android:background="#29B6F6"/>
+
+
+
+
+
+
 
 
 </RelativeLayout>

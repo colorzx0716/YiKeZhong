@@ -53,7 +53,7 @@ public class Fragment11 extends Fragment implements AdView, VideosView {
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        view = View.inflate(getContext(), R.layout.fragment11, null);
+        view = View.inflate(getActivity(), R.layout.fragment11, null);
         return view;
 
     }
@@ -86,7 +86,7 @@ public class Fragment11 extends Fragment implements AdView, VideosView {
     private void initView() {
         //Xbanner控件
 
-        View view2 = View.inflate(getContext(), R.layout.head_item, null);
+        View view2 = View.inflate(getActivity(), R.layout.head_item, null);
         fg11_head_xbanner = view2.findViewById(R.id.fg11_head_xbanner);
 
         //XRecyclerview控件
@@ -144,7 +144,7 @@ public class Fragment11 extends Fragment implements AdView, VideosView {
         fg11_head_xbanner.setmAdapter(new XBanner.XBannerAdapter() {
             @Override
             public void loadBanner(XBanner banner, View view, int position) {
-                Glide.with(getActivity()).load(imgs.get(position)).into((ImageView) view);
+                Glide.with(getContext()).load(imgs.get(position)).into((ImageView) view);
             }
         });
 
@@ -157,14 +157,13 @@ public class Fragment11 extends Fragment implements AdView, VideosView {
 
     @Override
     public void AdFailue(String e) {
-        Toast.makeText(getContext(), "失败", Toast.LENGTH_SHORT).show();
 
     }
 
     @Override
     public void videosSuccess(List<VideosBean.DataBean> data) {
 
-        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getContext());
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
 
         fg11_xrv.setLayoutManager(linearLayoutManager);
         myFg11Adapter = new MyFg11Adapter(getActivity(),data);
@@ -197,12 +196,11 @@ public class Fragment11 extends Fragment implements AdView, VideosView {
             public void onLoadMore() {
                 p++;
                 videosPresenter.getVideosModel(uid,type,p+"");
-                Toast.makeText(getContext(), "加载", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "加载", Toast.LENGTH_SHORT).show();
                 fg11_xrv.loadMoreComplete();
 
             }
         });
-
     }
 
     @Override
