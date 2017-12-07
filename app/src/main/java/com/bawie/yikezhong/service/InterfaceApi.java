@@ -2,6 +2,8 @@ package com.bawie.yikezhong.service;
 
 import com.bawie.yikezhong.bean.AdBean;
 import com.bawie.yikezhong.bean.FollowBean;
+import com.bawie.yikezhong.bean.HotVideosBean;
+import com.bawie.yikezhong.bean.NearVideosBean;
 import com.bawie.yikezhong.bean.PraiseBean;
 import com.bawie.yikezhong.bean.PublishBean;
 import com.bawie.yikezhong.bean.PublishVideo;
@@ -80,12 +82,17 @@ public interface InterfaceApi {
     //热门视频
     @POST("quarter/getHotVideos")
     @FormUrlEncoded
-    Observable<PublishVideo> getHotVideos(@Field("page") String page);
+    Observable<HotVideosBean> getHotVideos(@Field("page") String page);
+
 
     //附近视频
     @POST("quarter/getNearVideos")
     @FormUrlEncoded
-    Observable<PublishVideo> getNearVideos(@Field("page") String page,@Field("latitude") String latitude,@Field("longitude") String longitude);
+    Observable<NearVideosBean> getNearVideos(@Field("page") String page, @Field("latitude") String latitude, @Field("longitude") String longitude);
+
+
+    //
+
 
 
 }

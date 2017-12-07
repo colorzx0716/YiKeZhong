@@ -38,7 +38,6 @@ public class Fragment32 extends Fragment{
        /* SharedPreferences sp = getActivity().getSharedPreferences("sp", Context.MODE_PRIVATE);
         String uid = sp.getString("uid", "146");*/
 
-
     }
 
 

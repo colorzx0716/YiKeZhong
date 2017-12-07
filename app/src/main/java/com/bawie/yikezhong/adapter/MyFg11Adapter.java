@@ -98,10 +98,6 @@ public class MyFg11Adapter extends RecyclerView.Adapter<MyFg11Adapter.MyFg11View
             holder.fg11_list_des.setText(workDesc);
         }
 
-       /* boolean setUp = holder.fg11_player.setUp(videoUrl, JCVideoPlayer.SCREEN_LAYOUT_LIST, "");
-        if (setUp) {
-            Glide.with(context).load(icon).into(holder.fg11_player.thumbImageView);
-        }*/
 
     }
 
